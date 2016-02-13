@@ -6,13 +6,13 @@ User.destroy_all
 
 puts 'Creating users...'
 
-User.create(name: "Michael Hartl", email: "mhartl@example.com", password: "foobar", password_confirmation: "foobar",
+User.create(name: "Richard Tooke", email: "r2k@me.com", password: "lollip0p", password_confirmation: "lollip0p",
             activated: true,
             activated_at: Time.zone.now)
 
-User.create(name: "Chip Irek", email: "chip.irek@gmail.com", password: "lollip0p", password_confirmation: "lollip0p",
-            activated: true,
-            activated_at: Time.zone.now)
+#User.create(name: "Chip Irek", email: "chip.irek@gmail.com", password: "lollip0p", password_confirmation: "lollip0p",
+#            activated: true,
+#            activated_at: Time.zone.now)
 
 User.create!(name:  "Example User",
              email: "example@railstutorial.org",
