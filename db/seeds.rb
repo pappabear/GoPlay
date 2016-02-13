@@ -10,9 +10,10 @@ User.create(name: "Richard Tooke", email: "r2k@me.com", password: "lollip0p", pa
             activated: true,
             activated_at: Time.zone.now)
 
-#User.create(name: "Chip Irek", email: "chip.irek@gmail.com", password: "lollip0p", password_confirmation: "lollip0p",
-#            activated: true,
-#            activated_at: Time.zone.now)
+User.create(name: "Chip Irek", email: "chip.irek@gmail.com", password: "lollip0p", password_confirmation: "lollip0p",
+            activated: true,
+            admin: true,
+            activated_at: Time.zone.now)
 
 User.create!(name:  "Example User",
              email: "example@railstutorial.org",
