@@ -1,0 +1,17 @@
+<%= form_for(@activity) do |f| %>
+    <% if @activity.errors.any? %>
+        <div id="error_explanation">
+          <div class="alert alert-danger">
+            The form contains <%= pluralize(@activity.errors.count, "error") %>.
+          </div>
+          <ul>
+            <% @activity.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <%= f.label :name %><br>
+    <%= f.text_field :name, class: 'form-control' %>
+    <%= f.submit "Save", class: "btn btn-primary" %>
+<% end %>

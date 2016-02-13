@@ -1,0 +1,16 @@
+<h1>Activities</h1>
+
+<ul class="users">
+  <% @activities.each do |activity| %>
+      <li>
+        <%= link_to activity.name, edit_activity_path(activity), style: 'font-weight:bold; font-size:1.25em;' %>
+        <%= link_to '(Delete)', activity, method: :delete, data: {confirm: 'Are you sure?'} %>
+      </li>
+  <% end %>
+
+</ul>
+
+<br>
+
+
+<%= link_to 'New Activity', new_activity_path, class: "btn btn-lg btn-primary" %>
