@@ -1,0 +1,13 @@
+development:
+  host: localhost
+  adapter: postgresql
+  database: GoPlay
+  username: <%= ENV['POSTGRES_USERNAME'] %>
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
+
+test:
+  host: localhost
+  adapter: postgresql
+  database: GoPlay_TEST
+  username: <%= ENV['POSTGRES_USERNAME'] %>
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
