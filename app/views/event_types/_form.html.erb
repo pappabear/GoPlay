@@ -1,0 +1,21 @@
+<%= form_for([ @activity, @event_type] ) do |f| %>
+    <% if @event_type.errors.any? %>
+        <div id="error_explanation">
+          <div class="alert alert-danger">
+            The form contains <%= pluralize(@event_type.errors.count, "error") %>.
+          </div>
+          <ul>
+            <% @event_type.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <%= f.hidden_field :activity_id %>
+    <%= f.label :name %><br>
+    <%= f.text_field :name, class: 'form-control' %>
+    <%= f.submit "Save", class: "btn btn-primary" %>
+<% end %>
+
+

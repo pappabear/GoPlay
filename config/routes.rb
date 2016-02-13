@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
-  resources :activities
+  resources :activities do
+    resources :event_types
+  end
+
   get 'password_resets/new'
   get 'password_resets/edit'
   get 'account_activations/edit'

@@ -1,4 +1,10 @@
+puts 'Removing old data...'
+
+EventType.destroy_all
+Activity.destroy_all
 User.destroy_all
+
+puts 'Creating users...'
 
 User.create(name: "Michael Hartl", email: "mhartl@example.com", password: "foobar", password_confirmation: "foobar",
             activated: true,
@@ -27,3 +33,34 @@ User.create!(name:  "Example User",
                activated: true,
                activated_at: Time.zone.now)
 end
+
+puts 'Creating activities...'
+
+a1 = Activity.create( :name => 'Ice Hockey' )
+a2 = Activity.create( :name => 'Field Hockey' )
+a3 = Activity.create( :name => 'Soccer' )
+a4 = Activity.create( :name => 'Music' )
+a5 = Activity.create( :name => 'Golf' )
+a6 = Activity.create( :name => 'Cricket' )
+
+puts 'Creating event types...'
+
+a1.event_types.create( :name => 'Join an Adult League')
+a1.event_types.create( :name => 'Player Sub')
+a1.event_types.create( :name => 'Goalie Sub')
+a1.event_types.create( :name => 'Referee Sub')
+a1.event_types.create( :name => 'Pickup / Open Hockey')
+a1.event_types.create( :name => 'Adult League Tournament')
+a1.event_types.create( :name => 'Private Pickup')
+a1.event_types.create( :name => 'Lessons / Coaching')
+
+a3.event_types.create( :name => 'Join an Adult League')
+a3.event_types.create( :name => 'Player Sub')
+a3.event_types.create( :name => 'Goalie Sub')
+a3.event_types.create( :name => 'Referee Sub')
+a3.event_types.create( :name => 'Pickup')
+a3.event_types.create( :name => 'Adult League Tournament')
+a3.event_types.create( :name => 'Private Pickup')
+a3.event_types.create( :name => 'Lessons / Coaching')
+
+a6.event_types.create( :name => 'Weekend Friendly')

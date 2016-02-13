@@ -15,14 +15,14 @@ class ActivitiesControllerTest < ActionController::TestCase
 
 
   test "should get new" do
-    get :new
+    get :new, activity_id: @activity.id
     assert_response :success
   end
 
 
   test "should create activity" do
     assert_difference('Activity.count') do
-      post :create, activity: { name: @activity.name }
+      post :create, activity: { name: @activity.name + '-new' }
     end
 
     assert_redirected_to activities_path #activity_path(assigns(:activity))
