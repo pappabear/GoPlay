@@ -2,7 +2,7 @@ class EventTypesController < ApplicationController
 
 
   before_action :set_event_type, only: [:show, :edit, :update, :destroy]
-  before_action :admin_user,     only: :destroy
+  before_action :admin_user
 
 
   def new
@@ -77,7 +77,8 @@ class EventTypesController < ApplicationController
 
   # Confirms an admin user.
   def admin_user
-    redirect_to(root_url) unless current_user.admin?
+    flash[:danger] = 'You must be an admin to perform that function.'
+    redirect_to(login_path) unless is_admin? #current_user.admin?
   end
 
 
