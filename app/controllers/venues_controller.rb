@@ -1,8 +1,8 @@
 class VenuesController < ApplicationController
 
 
-  before_action :set_venue, only: [:show, :edit, :update, :destroy]
   before_action :admin_user
+  before_action :set_venue, only: [:show, :edit, :update, :destroy]
 
 
   def index
@@ -28,10 +28,7 @@ class VenuesController < ApplicationController
 
     respond_to do |format|
       if @venue.save
-        format.html {
-          flash[:success] = "Venue was successfully created."
-          redirect_to venues_path
-        }
+        format.html { redirect_to venues_path, success: 'Venue was successfully created.' }
         format.json { render :show, status: :created, location: @venue }
       else
         format.html { render :new }
@@ -44,10 +41,7 @@ class VenuesController < ApplicationController
   def update
     respond_to do |format|
       if @venue.update(venue_params)
-        format.html {
-          flash[:success] = "Venue was successfully updated."
-          redirect_to venues_path
-        }
+        format.html { redirect_to venues_path, success: 'Venue was successfully updated.' }
         format.json { render :show, status: :ok, location: @venue }
       else
         format.html { render :edit }
@@ -60,10 +54,7 @@ class VenuesController < ApplicationController
   def destroy
     @venue.destroy
     respond_to do |format|
-      format.html {
-        flash[:success] = "Venue was successfully deleted."
-        redirect_to venues_path
-      }
+      format.html { redirect_to venues_path, success: 'Venue was successfully removed.' }
       format.json { head :no_content }
     end
   end

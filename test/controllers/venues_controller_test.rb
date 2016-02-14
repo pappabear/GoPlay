@@ -35,7 +35,7 @@ class VenuesControllerTest < ActionController::TestCase
 
   test "should get venue" do
     log_in_as(@user)
-    get :show
+    get :show, id: @venue
     assert_response :success
     assert_not_nil assigns(:venue)
   end
@@ -58,7 +58,7 @@ class VenuesControllerTest < ActionController::TestCase
   test "should create venue" do
     log_in_as(@user)
     assert_difference('Venue.count') do
-      post :create, activity: { name: @venue.name + '-new' }
+      post :create, venue: { name: @venue.name + '-new', address1: @venue.address1, city: @venue.city, state: @venue.state }
     end
     assert_redirected_to venues_path
   end

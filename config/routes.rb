@@ -1,36 +1,9 @@
 Rails.application.routes.draw do
 
-  get 'venues/index'
-
-  get 'venues/show'
-
-  get 'venues/new'
-
-  get 'venues/edit'
-
-  get 'venues/create'
-
-  get 'venues/update'
-
-  get 'venues/destroy'
-
-  get 'venue/index'
-
-  get 'venue/show'
-
-  get 'venue/new'
-
-  get 'venue/edit'
-
-  get 'venue/create'
-
-  get 'venue/update'
-
-  get 'venue/destroy'
-
   resources :activities do
     resources :event_types
   end
+  resources :venues
 
   get 'password_resets/new'
   get 'password_resets/edit'
