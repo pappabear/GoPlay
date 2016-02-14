@@ -1,6 +1,7 @@
 class ActivitiesController < ApplicationController
 
   before_action :set_activity, only: [:show, :edit, :update, :destroy]
+  before_action :admin_user,     only: :destroy
 
 
   def index
@@ -81,5 +82,10 @@ class ActivitiesController < ApplicationController
       params.require(:activity).permit(:name)
     end
 
+
+    # Confirms an admin user.
+    def admin_user
+      redirect_to(root_url) unless current_user.admin?
+    end
 
 end

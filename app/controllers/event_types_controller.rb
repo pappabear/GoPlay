@@ -2,6 +2,7 @@ class EventTypesController < ApplicationController
 
 
   before_action :set_event_type, only: [:show, :edit, :update, :destroy]
+  before_action :admin_user,     only: :destroy
 
 
   def new
@@ -71,6 +72,12 @@ class EventTypesController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def event_type_params
     params.require(:event_type).permit(:activity_id, :name)
+  end
+
+
+  # Confirms an admin user.
+  def admin_user
+    redirect_to(root_url) unless current_user.admin?
   end
 
 
