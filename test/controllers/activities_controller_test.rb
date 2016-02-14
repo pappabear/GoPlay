@@ -35,7 +35,7 @@ class ActivitiesControllerTest < ActionController::TestCase
 
   test "should get new" do
     log_in_as(@user)
-    get :new, activity_id: @activity.id
+    get :new
     assert_response :success
   end
 

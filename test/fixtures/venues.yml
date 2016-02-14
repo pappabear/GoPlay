@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+factory:
+  name: The Factory
+  address1: 123 Some Street
+  address2: 
+  city: Wake Forest
+  state: NC
+  zip: 27587
+  phone: 321-654-8798
+  longitude: 12
+  latitude: 21
+
