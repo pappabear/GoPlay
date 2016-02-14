@@ -1,23 +1,31 @@
 <h1>Event Types for <%= @activity.name %></h1>
 
-<% if @activity.event_types.count == 0 %>
-    <h3>None</h3>
-<% end %>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
 
+    <% if @activity.event_types.count == 0 %>
+        <h5>None</h5>
+    <% end %>
 
-<ul class="users">
-  <% @activity.event_types.each do |et| %>
-      <li>
-        <%= link_to et.name, edit_activity_event_type_path(@activity, et), style: 'font-weight:bold;' %>
-        <%= link_to '(Delete)', activity_event_type_path(@activity, et), method: :delete, data: {confirm: 'Are you sure?'} %>
-      </li>
-  <% end %>
-</ul>
+    <ul class="users">
+      <% @activity.event_types.each do |et| %>
+          <li>
+            <%= link_to et.name, edit_activity_event_type_path(@activity, et), style: 'font-weight:bold; font-size:1.25em;' %>
+            <%= link_to '[Delete]', activity_event_type_path(@activity, et), method: :delete, data: {confirm: 'Are you sure?'}, class: 'pull-right' %>
+            <span class="pull-right">&nbsp;|&nbsp;</span>
+            <%= link_to '[Edit]', edit_activity_event_type_path(@activity, et), class: 'pull-right' %>
+          </li>
+          </li>
+      <% end %>
+    </ul>
 
-<br>
+    <br>
 
-<%= link_to 'Add Event Type', new_activity_event_type_path(@activity), class: 'btn btn-large btn-primary' %>
+    <%= link_to 'Add Event Type', new_activity_event_type_path(@activity), class: 'btn btn-large btn-primary' %>
 
-<p>&nbsp;</p>
+    <p>&nbsp;</p>
 
-<%= link_to 'Back to Activities', activities_path %>
+    <%= link_to 'Back to Activities', activities_path %>
+
+  </div>
+</div>
