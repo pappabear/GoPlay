@@ -1,2 +1,25 @@
-<h1>Venues#index</h1>
-<p>Find me in app/views/venues/index.html.erb</p>
+<h1>Venues</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+
+    <ul class="users">
+      <% @venues.each do |venue| %>
+          <li>
+            <%= link_to venue.name, venue, style: 'font-weight:bold; font-size:1.25em;' %>
+            <%= link_to '[Delete]', venue, method: :delete, data: {confirm: 'Are you sure?'}, class:'pull-right' %>
+            <span class="pull-right">&nbsp;|&nbsp;</span>
+            <%= link_to '[Edit]', edit_venue_path(venue), class: 'pull-right' %>
+          </li>
+      <% end %>
+    </ul>
+
+    <br />
+    <%= link_to 'New Venue', new_venue_path, class: "btn btn-lg btn-primary" %>
+
+  </div>
+</div>
+
+
+
+

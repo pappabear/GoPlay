@@ -77,8 +77,10 @@ class VenuesController < ApplicationController
 
   # Confirms an admin user.
   def admin_user
-    flash[:danger] = 'You must be an admin to perform that function.'
-    redirect_to(login_path) unless is_admin?  #current_user.admin?
+    if !is_admin?
+      flash[:danger] = 'You must be an admin to perform that function.'
+      redirect_to(login_path)
+    end
   end
 
 

@@ -1,0 +1,43 @@
+<%= form_for(@venue) do |f| %>
+    <% if @venue.errors.any? %>
+        <div id="error_explanation">
+          <div class="alert alert-danger">
+            The form contains <%= pluralize(@venue.errors.count, "error") %>.
+          </div>
+          <ul>
+            <% @venue.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <%= f.label :name %><br>
+    <%= f.text_field :name, class: 'form-control' %>
+
+    <%= f.label :address1 %><br>
+    <%= f.text_field :address1, class: 'form-control' %>
+    <%= f.text_field :address2, class: 'form-control' %>
+
+    <%= f.label :city %><br>
+    <%= f.text_field :city, class: 'form-control' %>
+
+    <%= f.label :state %><br>
+    <%= f.text_field :state, class: 'form-control' %>
+
+    <%= f.label :zip %><br>
+    <%= f.text_field :zip, class: 'form-control' %>
+
+    <%= f.label :phone %><br>
+    <%= f.text_field :phone, class: 'form-control' %>
+
+    <%= f.label :latitude %><br>
+    <%= f.text_field :latitude, class: 'form-control', readonly: 'readonly' %>
+
+    <%= f.label :longitude %><br>
+    <%= f.text_field :longitude, class: 'form-control', readonly: 'readonly' %>
+
+    <%= f.submit "Save", class: "btn btn-primary" %>
+
+<% end %>
+
