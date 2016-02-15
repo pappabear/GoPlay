@@ -1,5 +1,13 @@
 class Venue < ActiveRecord::Base
 
+
+  acts_as_mappable :default_units => :miles,
+                   :default_formula => :sphere,
+                   :distance_field_name => :distance,
+                   :lat_column_name => :latitude,
+                   :lng_column_name => :longitude
+
+
   # Needed for Google goecoding API work
   # HACK - mechanize is overkill, but at the time of this writing the Open::URI stack has a bug (since move to Ruby 2.2.4)
   BASE_URL = "http://maps.googleapis.com/maps/api/geocode/json?address="
@@ -15,13 +23,11 @@ class Venue < ActiveRecord::Base
 
   def geocode_address
 
-    puts '========Entering Venue.geocode_address()...'
-
     # build the actual query to send to Google
     begin
 
       full_url = BASE_URL + google_friendly_address
-      puts 'full_url = ' + full_url
+      #puts 'full_url = ' + full_url
     rescue Exception => e
       errors.add(:name, "address is not geocodeable. We can't determine the latitude and longitude. Please enter a valid address. ERROR 1, google_friendly_address is bad, #{e.message}")
       return
@@ -30,16 +36,16 @@ class Venue < ActiveRecord::Base
     # Make the request to retrieve the JSON string via mechanize
     begin
       encoded_url = URI.escape(full_url)
-      puts 'encoded_url = ' + encoded_url
+      #puts 'encoded_url = ' + encoded_url
       agent = Mechanize.new
       #puts 'agent created? ' + !agent.nil?
       json = agent.get(encoded_url).body
-      puts 'json = ' + json
+      #puts 'json = ' + json
       result = JSON.parse json
       if !result
         throw 'Result from JSON parsing is bad.'
       end
-      puts 'result parsed from response body, result = ' + result.to_s
+      #puts 'result parsed from response body, result = ' + result.to_s
     rescue Exception => e
       errors.add(:name, "address is not geocodeable. We can't determine the latitude and longitude. Please enter a valid address. ERROR 3,  #{e.message}")
       return
@@ -94,6 +100,16 @@ class Venue < ActiveRecord::Base
   def google_friendly_address
     s = [self.address1, self.city, self.state, self.zip].compact.join(', ')
     s = s.downcase.tr(" ", "+")
+    return s
+  end
+
+
+  def formatted_address
+    s = self.address1
+    s += ', ' + self.address2 if !self.address2.empty?
+    s += ', ' + self.city
+    s += ', ' + self.state
+    s += ' ' + self.zip
     return s
   end
 

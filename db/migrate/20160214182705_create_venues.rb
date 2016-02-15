@@ -8,8 +8,8 @@ class CreateVenues < ActiveRecord::Migration
       t.string :state
       t.string :zip
       t.string :phone
-      t.string :longitude
-      t.string :latitude
+      t.float :longitude
+      t.float :latitude
 
       t.timestamps null: false
     end

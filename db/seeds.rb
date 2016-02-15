@@ -65,3 +65,31 @@ a3.event_types.create( :name => 'Private Pickup')
 a3.event_types.create( :name => 'Lessons / Coaching')
 
 a6.event_types.create( :name => 'Weekend Friendly')
+
+
+puts 'Creating venues...'
+
+v1 = Venue.create(  :name       => 'Polar Ice House Wake Forest',
+                    :address1   => '1839 S Main St',
+                    :address2   => '#200',
+                    :city       => 'wake forest',
+                    :state      => 'nc',
+                    :zip        => '27587',
+                    :phone      => '919-654-9872')
+
+v2 = Venue.create(  :name       => 'Mennen Arena',
+                    :address1   => '161 E Hanover Ave',
+                    :city       => 'morristown',
+                    :state      => 'nj',
+                    :zip        => '07960',
+                    :phone      => '973-326-7651' )
+
+v3 = Venue.create(  :name       => 'Raleigh Ice Plex',
+                    :address1   => '2601 Raleigh Blvd',
+                    :city       => 'raleigh',
+                    :state      => 'nc',
+                    :zip        => '27604',
+                    :phone      => '919-878-9002' )
+
+puts '...venues created.  Make sure the geocoding worked!!. Verify that latitudes and longitudes are filled in.'
+
