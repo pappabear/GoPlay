@@ -2,6 +2,7 @@ puts 'Removing old data...'
 
 EventType.destroy_all
 Activity.destroy_all
+Venue.destroy_all
 User.destroy_all
 
 puts 'Creating users...'

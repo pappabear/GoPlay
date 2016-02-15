@@ -13,7 +13,7 @@
     <% end %>
 
     <%= f.label :name %><br>
-    <%= f.text_field :name, class: 'form-control' %>
+    <%= f.text_field :name, class: 'form-control', autofocus: 'autofocus' %>
 
     <%= f.label :address1 %><br>
     <%= f.text_field :address1, class: 'form-control' %>
@@ -31,11 +31,11 @@
     <%= f.label :phone %><br>
     <%= f.text_field :phone, class: 'form-control' %>
 
-    <%= f.label :latitude %><br>
-    <%= f.text_field :latitude, class: 'form-control', readonly: 'readonly' %>
+    <%= f.label :latitude, style: 'display:none' %><br>
+    <%= f.text_field :latitude, class: 'form-control', readonly: 'readonly', style: 'display:none' %>
 
-    <%= f.label :longitude %><br>
-    <%= f.text_field :longitude, class: 'form-control', readonly: 'readonly' %>
+    <%= f.label :longitude, style: 'display:none' %><br>
+    <%= f.text_field :longitude, class: 'form-control', readonly: 'readonly', style: 'display:none' %>
 
     <%= f.submit "Save", class: "btn btn-primary" %>
 

@@ -3,7 +3,6 @@
 factory:
   name: The Factory
   address1: 123 Some Street
-  address2: 
   city: Wake Forest
   state: NC
   zip: 27587

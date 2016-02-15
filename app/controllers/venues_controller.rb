@@ -28,9 +28,21 @@ class VenuesController < ApplicationController
 
     respond_to do |format|
       if @venue.save
-        format.html { redirect_to venues_path, success: 'Venue was successfully created.' }
+        format.html {
+          flash[:success] = "Venue was successfully created."
+          redirect_to venues_path
+        }
         format.json { render :show, status: :created, location: @venue }
       else
+        puts '-----------------------------------------------------'
+        puts @venue.errors.count.to_s + ' ERROR(S) CAUGHT HERE, in Venue.create()'
+        if @venue.errors.any?
+            @venue.errors.full_messages.each do |msg|
+              puts '-' + msg
+            end
+        end
+        puts '-----------------------------------------------------'
+
         format.html { render :new }
         format.json { render json: @venue.errors, status: :unprocessable_entity }
       end
@@ -41,9 +53,22 @@ class VenuesController < ApplicationController
   def update
     respond_to do |format|
       if @venue.update(venue_params)
-        format.html { redirect_to venues_path, success: 'Venue was successfully updated.' }
+        format.html {
+          flash[:success] = "Venue was successfully updated."
+          redirect_to venues_path
+        }
         format.json { render :show, status: :ok, location: @venue }
       else
+
+        puts '-----------------------------------------------------'
+        puts @venue.errors.count.to_s + ' ERROR(S) CAUGHT HERE, in Venue.update()'
+        if @venue.errors.any?
+          @venue.errors.full_messages.each do |msg|
+            puts '-' + msg
+          end
+        end
+        puts '-----------------------------------------------------'
+
         format.html { render :edit }
         format.json { render json: @venue.errors, status: :unprocessable_entity }
       end
@@ -54,7 +79,10 @@ class VenuesController < ApplicationController
   def destroy
     @venue.destroy
     respond_to do |format|
-      format.html { redirect_to venues_path, success: 'Venue was successfully removed.' }
+      format.html {
+        flash[:success] = "Venue was successfully deleted."
+        redirect_to venues_path
+      }
       format.json { head :no_content }
     end
   end

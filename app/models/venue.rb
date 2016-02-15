@@ -12,13 +12,10 @@ class Venue < ActiveRecord::Base
   # HACK - mechanize is overkill, but at the time of this writing the Open::URI stack has a bug (since move to Ruby 2.2.4)
   BASE_URL = "http://maps.googleapis.com/maps/api/geocode/json?address="
 
-  before_validation :geocode_address, :on => [:create, :update]
-
 
   validates_presence_of :name
-  validates_presence_of :address1
-  validates_presence_of :city
-  validates_presence_of :state
+
+  after_validation :geocode_address, :on => [:create, :update]
 
 
   def geocode_address
@@ -47,13 +44,13 @@ class Venue < ActiveRecord::Base
       end
       #puts 'result parsed from response body, result = ' + result.to_s
     rescue Exception => e
-      errors.add(:name, "address is not geocodeable. We can't determine the latitude and longitude. Please enter a valid address. ERROR 3,  #{e.message}")
+      errors.add(:address1, "address is not geocodeable. We can't determine the latitude and longitude. Please enter a valid address. ERROR 3,  #{e.message}")
       return
     end
 
     # Examine the results
     if result["status"] == "ZERO_RESULTS"
-      errors.add(:name, " address is not geocodeable. We can't determine the latitude and longitude. Please enter a valid address. ZERO_RESULTS.")
+      errors.add(:address1, " address is not geocodeable. We can't determine the latitude and longitude. Please enter a valid address. ZERO_RESULTS.")
       return
     end
 
@@ -61,6 +58,7 @@ class Venue < ActiveRecord::Base
     lat = result['results'][0]['geometry']['location']['lat'].to_f
     lng = result['results'][0]['geometry']['location']['lng'].to_f
 
+    self.formatted_address = result['results'][0]['formatted_address']
     self.latitude, self.longitude = lat, lng
 
     # Update the record with the correctly formatted address based on the geocoding data returned
@@ -100,16 +98,6 @@ class Venue < ActiveRecord::Base
   def google_friendly_address
     s = [self.address1, self.city, self.state, self.zip].compact.join(', ')
     s = s.downcase.tr(" ", "+")
-    return s
-  end
-
-
-  def formatted_address
-    s = self.address1
-    s += ', ' + self.address2 if !self.address2.empty?
-    s += ', ' + self.city
-    s += ', ' + self.state
-    s += ' ' + self.zip
     return s
   end
 

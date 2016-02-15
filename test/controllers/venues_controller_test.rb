@@ -55,19 +55,21 @@ class VenuesControllerTest < ActionController::TestCase
   end
 
 
+  test "should update venue" do
+    log_in_as(@user)
+    #patch :update, id: @venue, venue: { name: @venue.name + '-e' }
+    patch :update, id: @venue, venue: { address1: @venue.address1, address2: @venue.address2, city: @venue.city, latitude: @venue.latitude, longitude: @venue.longitude, name: @venue.name + '-e', phone: @venue.phone, state: @venue.state, zip: @venue.zip }
+    assert_redirected_to venues_path
+  end
+
+
   test "should create venue" do
     log_in_as(@user)
     assert_difference('Venue.count') do
       post :create, venue: { name: @venue.name + '-new', address1: @venue.address1, city: @venue.city, state: @venue.state }
     end
-    assert_redirected_to venues_path
-  end
 
-
-  test "should update venue" do
-    log_in_as(@user)
-    patch :update, id: @venue, venue: { name: @venue.name + '-e' }
-    assert_redirected_to venues_path
+    assert_redirected_to venues_path #activity_path(assigns(:activity))
   end
 
 

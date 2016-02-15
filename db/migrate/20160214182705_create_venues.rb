@@ -3,7 +3,7 @@ class CreateVenues < ActiveRecord::Migration
     create_table :venues do |t|
       t.string :name
       t.string :address1
-      t.string :address2
+      t.string :address2, allow_null: true
       t.string :city
       t.string :state
       t.string :zip
