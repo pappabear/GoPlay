@@ -6,7 +6,7 @@ class VenuesController < ApplicationController
 
 
   def index
-    @venues = Venue.all
+    @venues = Venue.paginate(page: params[:page])
   end
 
 

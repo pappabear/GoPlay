@@ -1,25 +1,18 @@
+<% provide(:title, 'Venues') %>
 <h1>Venues</h1>
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
 
-    <ul class="users">
-      <% @venues.each do |venue| %>
-          <li>
-            <%= link_to venue.name, venue, style: 'font-weight:bold; font-size:1.25em;' %><br/>
-            <%= venue.formatted_address %>
-            <%= link_to '[Delete]', venue, method: :delete, data: {confirm: 'Are you sure?'}, class:'pull-right' %>
-            <span class="pull-right">&nbsp;|&nbsp;</span>
-            <%= link_to '[Edit]', edit_venue_path(venue), class: 'pull-right' %>
-          </li>
-      <% end %>
-    </ul>
+<%= will_paginate %>
 
-    <br />
-    <%= link_to 'New Venue', new_venue_path, class: "btn btn-lg btn-primary" %>
+<ul class="users">
+  <%= render @venues %>
+</ul>
 
-  </div>
-</div>
+<%= will_paginate %>
+
+
+<br />
+<%= link_to 'New Venue', new_venue_path, class: "btn btn-lg btn-primary" %>
 
 
 

@@ -1,0 +1,5 @@
+<li>
+  <%= link_to venue.name, venue %>
+  <br /> <%= venue.formatted_address %>
+  <%= link_to "delete", venue, method: :delete, data: { confirm: "You sure?" }, class: 'pull-right' %>
+</li>
