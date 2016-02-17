@@ -92,5 +92,70 @@ v3 = Venue.create(  :name       => 'Raleigh Ice Plex',
                     :zip        => '27604',
                     :phone      => '919-878-9002' )
 
+Venue.create(  :name       => 'United Skates of America',
+               :address1   => '75 New Rd',
+               :city       => 'Rumford',
+               :state      => 'RI',
+               :zip        => '02916',
+               :phone      => Faker::PhoneNumber.cell_phone )
+
+Venue.create(  :name       => 'Dennis Lynch Arena',
+               :address1   => '25 Andrew D Ferland Way',
+               :city       => 'Pawtucket',
+               :state      => 'RI',
+               :zip        => '02860',
+               :phone      => Faker::PhoneNumber.cell_phone )
+
+Venue.create(  :name       => 'Bay State Arena',
+               :address1   => '393 Totten Pond Rd',
+               :address2 => '#201',
+               :city       => 'Waltham',
+               :state      => 'MA',
+               :zip        => '02451',
+               :phone      => Faker::PhoneNumber.cell_phone )
+
+Venue.create(  :name       => 'Veterans Memorial Rink',
+               :address1   => '359 Totten Pond Rd',
+               :city       => 'Waltham',
+               :state      => 'MA',
+               :zip        => '02451',
+               :phone      => Faker::PhoneNumber.cell_phone )
+
+Venue.create(  :name       => 'Floyd Hall Arena',
+               :address1   => '28 Clove Rd',
+               :city       => 'Little Falls',
+               :state      => 'NJ',
+               :zip        => '07424',
+               :phone      => Faker::PhoneNumber.cell_phone )
+
+Venue.create(  :name       => 'Ice House',
+               :address1   => '111 Midtown Bridge St',
+               :city       => 'Hackensack',
+               :state      => 'NJ',
+               :zip        => '07601',
+               :phone      => Faker::PhoneNumber.cell_phone )
+
+Venue.create(  :name       => 'Dr Pepper Center',
+               :address1   => '4020 W Plano Pkwy',
+               :city       => 'Plano',
+               :state      => 'TX',
+               :zip        => '75093',
+               :phone      => Faker::PhoneNumber.cell_phone )
+
+Venue.create(  :name       => Faker::Company.name,
+               :address1   => '2610 Allen St',
+               :address2   => '#5200',
+               :city       => 'Dallas',
+               :state      => 'TX',
+               :phone      => Faker::PhoneNumber.cell_phone )
+
+Venue.create(  :name       => Faker::Company.name,
+               :address1   => '1400 S Pipeline Rd',
+               :city       => 'Euless',
+               :state      => 'TX',
+               :zip        => '76040',
+               :phone      => Faker::PhoneNumber.cell_phone )
+
 puts '...venues created.  Make sure the geocoding worked!!. Verify that latitudes and longitudes are filled in.'
+
 
