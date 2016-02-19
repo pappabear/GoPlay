@@ -24,7 +24,7 @@ User.create!(name: "Example User",
              activated: true,
              activated_at: Time.zone.now)
 
-99.times do |n|
+30.times do |n|
   name = Faker::Name.name
   email = "example-#{n+1}@railstutorial.org"
   password = "password"
@@ -70,94 +70,94 @@ a6.event_types.create(:name => 'Weekend Friendly')
 
 puts 'Creating venues...'
 
-v1 = Venue.create(:name => 'Polar Ice House Wake Forest',
-                  :address1 => '1839 S Main St',
-                  :address2 => '#200',
-                  :city => 'wake forest',
-                  :state => 'nc',
-                  :zip => '27587',
-                  :phone => '919-654-9872')
+v1 = Venue.create!(:name => 'Polar Ice House Wake Forest',
+                   :address1 => '1839 S Main St',
+                   :address2 => '#200',
+                   :city => 'wake forest',
+                   :state => 'nc',
+                   :zip => '27587',
+                   :phone => '919-654-9872')
 
-v2 = Venue.create(:name => 'Mennen Arena',
-                  :address1 => '161 E Hanover Ave',
-                  :city => 'morristown',
-                  :state => 'nj',
-                  :zip => '07960',
-                  :phone => '973-326-7651')
+v2 = Venue.create!(:name => 'Mennen Arena',
+                   :address1 => '161 E Hanover Ave',
+                   :city => 'morristown',
+                   :state => 'nj',
+                   :zip => '07960',
+                   :phone => '973-326-7651')
 
-v3 = Venue.create(:name => 'Raleigh Ice Plex',
-                  :address1 => '2601 Raleigh Blvd',
-                  :city => 'raleigh',
-                  :state => 'nc',
-                  :zip => '27604',
-                  :phone => '919-878-9002')
+v3 = Venue.create!(:name => 'Raleigh Ice Plex',
+                   :address1 => '2601 Raleigh Blvd',
+                   :city => 'raleigh',
+                   :state => 'nc',
+                   :zip => '27604',
+                   :phone => '919-878-9002')
 
-v4 = Venue.create(:name => 'United Skates of America',
-                  :address1 => '75 New Rd',
-                  :city => 'Rumford',
-                  :state => 'RI',
-                  :zip => '02916',
-                  :phone => Faker::PhoneNumber.cell_phone)
-
-v5 = Venue.create(:name => 'Dennis Lynch Arena',
-                  :address1 => '25 Andrew D Ferland Way',
-                  :city => 'Pawtucket',
-                  :state => 'RI',
-                  :zip => '02860',
-                  :phone => Faker::PhoneNumber.cell_phone)
-
-v6 = Venue.create(:name => 'Bay State Arena',
-                  :address1 => '393 Totten Pond Rd',
-                  :address2 => '#201',
-                  :city => 'Waltham',
-                  :state => 'MA',
-                  :zip => '02451',
-                  :phone => Faker::PhoneNumber.cell_phone)
-
-v7 = Venue.create(:name => 'Veterans Memorial Rink',
-                  :address1 => '359 Totten Pond Rd',
-                  :city => 'Waltham',
-                  :state => 'MA',
-                  :zip => '02451',
-                  :phone => Faker::PhoneNumber.cell_phone)
-
-v8 = Venue.create(:name => 'Floyd Hall Arena',
-                  :address1 => '28 Clove Rd',
-                  :city => 'Little Falls',
-                  :state => 'NJ',
-                  :zip => '07424',
-                  :phone => Faker::PhoneNumber.cell_phone)
-
-v9 = Venue.create(:name => 'Ice House',
-                  :address1 => '111 Midtown Bridge St',
-                  :city => 'Hackensack',
-                  :state => 'NJ',
-                  :zip => '07601',
-                  :phone => Faker::PhoneNumber.cell_phone)
-
-v10 = Venue.create(:name => 'Dr Pepper Center',
-                   :address1 => '4020 W Plano Pkwy',
-                   :city => 'Plano',
-                   :state => 'TX',
-                   :zip => '75093',
+v4 = Venue.create!(:name => 'United Skates of America',
+                   :address1 => '75 New Rd',
+                   :city => 'Rumford',
+                   :state => 'RI',
+                   :zip => '02916',
                    :phone => Faker::PhoneNumber.cell_phone)
 
-# v11 = Venue.create(  :name       => Faker::Company.name,
-#                :address1   => '2610 Allen St',
-#                :address2   => '#5200',
-#                :city       => 'Dallas',
-#                :state      => 'TX',
-#                :zip        => '76040',
-#                :phone      => Faker::PhoneNumber.cell_phone )
-# puts '... added ' + v11.name + ' in ' + v11.city + ' ' + v11.zip
+v5 = Venue.create!(:name => 'Dennis Lynch Arena',
+                   :address1 => '25 Andrew D Ferland Way',
+                   :city => 'Pawtucket',
+                   :state => 'RI',
+                   :zip => '02860',
+                   :phone => Faker::PhoneNumber.cell_phone)
 
-# v12 = Venue.create(  :name       => Faker::Company.name,
-#                :address1   => '1400 S Pipeline Rd',
-#                :city       => 'Euless',
-#                :state      => 'TX',
-#                :zip        => '76040',
-#                :phone      => Faker::PhoneNumber.cell_phone )
-# puts '... added ' + v12.name + ' in ' + v12.city + ' ' + v12.zip
+v6 = Venue.create!(:name => 'Bay State Arena',
+                   :address1 => '393 Totten Pond Rd',
+                   :address2 => '#201',
+                   :city => 'Waltham',
+                   :state => 'MA',
+                   :zip => '02451',
+                   :phone => Faker::PhoneNumber.cell_phone)
+
+v7 = Venue.create!(:name => 'Veterans Memorial Rink',
+                   :address1 => '359 Totten Pond Rd',
+                   :city => 'Waltham',
+                   :state => 'MA',
+                   :zip => '02451',
+                   :phone => Faker::PhoneNumber.cell_phone)
+
+v8 = Venue.create!(:name => 'Floyd Hall Arena',
+                   :address1 => '28 Clove Rd',
+                   :city => 'Little Falls',
+                   :state => 'NJ',
+                   :zip => '07424',
+                   :phone => Faker::PhoneNumber.cell_phone)
+
+v9 = Venue.create!(:name => 'Ice House',
+                   :address1 => '111 Midtown Bridge St',
+                   :city => 'Hackensack',
+                   :state => 'NJ',
+                   :zip => '07601',
+                   :phone => Faker::PhoneNumber.cell_phone)
+
+v10 = Venue.create!(:name => 'Dr Pepper Center',
+                    :address1 => '4020 W Plano Pkwy',
+                    :city => 'Plano',
+                    :state => 'TX',
+                    :zip => '75093',
+                    :phone => Faker::PhoneNumber.cell_phone)
+
+v11 = Venue.create!(:name => 'Some rink in Dallas',
+                    :address1 => '2610 Allen St',
+                    :address2 => '#5200',
+                    :city => 'Dallas',
+                    :state => 'TX',
+                    :zip => '76040',
+                    :phone => Faker::PhoneNumber.cell_phone)
+
+
+v12 = Venue.create!(:name => 'Blades of Glory',
+                    :address1 => '1400 S Pipeline Rd',
+                    :city => 'Euless',
+                    :state => 'TX',
+                    :zip => '76040',
+                    :phone => Faker::PhoneNumber.cell_phone)
+
 
 puts '...venues created.  Make sure the geocoding worked!!. Verify that latitudes and longitudes are filled in.'
 
