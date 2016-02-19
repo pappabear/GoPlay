@@ -77,7 +77,6 @@ v1 = Venue.create(  :name       => 'Polar Ice House Wake Forest',
                     :state      => 'nc',
                     :zip        => '27587',
                     :phone      => '919-654-9872')
-puts '... added ' + v1.name + ' in ' + v1.city + ' ' + v1.zip
 
 v2 = Venue.create(  :name       => 'Mennen Arena',
                     :address1   => '161 E Hanover Ave',
@@ -85,7 +84,6 @@ v2 = Venue.create(  :name       => 'Mennen Arena',
                     :state      => 'nj',
                     :zip        => '07960',
                     :phone      => '973-326-7651' )
-puts '... added ' + v2.name + ' in ' + v2.city + ' ' + v2.zip
 
 v3 = Venue.create(  :name       => 'Raleigh Ice Plex',
                     :address1   => '2601 Raleigh Blvd',
@@ -93,7 +91,6 @@ v3 = Venue.create(  :name       => 'Raleigh Ice Plex',
                     :state      => 'nc',
                     :zip        => '27604',
                     :phone      => '919-878-9002' )
-puts '... added ' + v3.name + ' in ' + v3.city + ' ' + v3.zip
 
 v4 = Venue.create(  :name       => 'United Skates of America',
                :address1   => '75 New Rd',
@@ -101,7 +98,6 @@ v4 = Venue.create(  :name       => 'United Skates of America',
                :state      => 'RI',
                :zip        => '02916',
                :phone      => Faker::PhoneNumber.cell_phone )
-puts '... added ' + v4.name + ' in ' + v4.city + ' ' + v4.zip
 
 v5 = Venue.create(  :name       => 'Dennis Lynch Arena',
                :address1   => '25 Andrew D Ferland Way',
@@ -109,7 +105,6 @@ v5 = Venue.create(  :name       => 'Dennis Lynch Arena',
                :state      => 'RI',
                :zip        => '02860',
                :phone      => Faker::PhoneNumber.cell_phone )
-puts '... added ' + v5.name + ' in ' + v5.city + ' ' + v5.zip
 
 v6 = Venue.create(  :name       => 'Bay State Arena',
                :address1   => '393 Totten Pond Rd',
@@ -118,7 +113,6 @@ v6 = Venue.create(  :name       => 'Bay State Arena',
                :state      => 'MA',
                :zip        => '02451',
                :phone      => Faker::PhoneNumber.cell_phone )
-puts '... added ' + v6.name + ' in ' + v6.city + ' ' + v6.zip
 
 v7 = Venue.create(  :name       => 'Veterans Memorial Rink',
                :address1   => '359 Totten Pond Rd',
@@ -126,7 +120,6 @@ v7 = Venue.create(  :name       => 'Veterans Memorial Rink',
                :state      => 'MA',
                :zip        => '02451',
                :phone      => Faker::PhoneNumber.cell_phone )
-puts '... added ' + v7.name + ' in ' + v7.city + ' ' + v7.zip
 
 v8 = Venue.create(  :name       => 'Floyd Hall Arena',
                :address1   => '28 Clove Rd',
@@ -134,7 +127,6 @@ v8 = Venue.create(  :name       => 'Floyd Hall Arena',
                :state      => 'NJ',
                :zip        => '07424',
                :phone      => Faker::PhoneNumber.cell_phone )
-puts '... added ' + v8.name + ' in ' + v8.city + ' ' + v8.zip
 
 v9 = Venue.create(  :name       => 'Ice House',
                :address1   => '111 Midtown Bridge St',
@@ -142,7 +134,6 @@ v9 = Venue.create(  :name       => 'Ice House',
                :state      => 'NJ',
                :zip        => '07601',
                :phone      => Faker::PhoneNumber.cell_phone )
-puts '... added ' + v9.name + ' in ' + v9.city + ' ' + v9.zip
 
 v10 = Venue.create(  :name       => 'Dr Pepper Center',
                :address1   => '4020 W Plano Pkwy',
@@ -150,7 +141,6 @@ v10 = Venue.create(  :name       => 'Dr Pepper Center',
                :state      => 'TX',
                :zip        => '75093',
                :phone      => Faker::PhoneNumber.cell_phone )
-puts '... added ' + v10.name + ' in ' + v10.city + ' ' + v10.zip
 
 # v11 = Venue.create(  :name       => Faker::Company.name,
 #                :address1   => '2610 Allen St',
