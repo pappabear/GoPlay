@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+pickup:
+  activity_id: 1
+  venue_id: 1
+  title: 'Pickup Hockey'
+  subtitle: 'some subtitle'
+  description: 'some description'
+  details: 'these are some details'
+  price: '$10 a head'
+  restrictions: 'Over 18'
+  info_url: 'http://google.com'
+  registration_url: 'http://google.com'
+  start_date: <%= Date.today %>
+  start_time: <%= Time.now %>
+  end_date: <%= Date.today %>
+  end_time: <%= Time.now %>
+  recurrence: 0
+

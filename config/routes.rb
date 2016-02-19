@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     resources :event_types
   end
   resources :venues
+  resources :events
 
   get 'password_resets/new'
   get 'password_resets/edit'
