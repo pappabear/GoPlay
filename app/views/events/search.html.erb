@@ -1,0 +1,22 @@
+<h1>Events</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+
+    <h4 style="padding-bottom:2em;"><%= @events.count %> matches found.</h4>
+
+    <%= will_paginate %>
+
+    <%= render partial: "cards", locals: {events: @events} %>
+
+    <%= will_paginate %>
+
+    <br />
+    <%= link_to 'Setup a New Event', new_event_path, class: "btn btn-lg btn-primary" %>
+
+  </div>
+</div>
+
+
+
+

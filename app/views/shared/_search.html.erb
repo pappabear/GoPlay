@@ -1,0 +1,28 @@
+<% activities = Activity.all %>
+
+<form id="event_search" method="get" accept-charset="UTF-8" action="/search">
+  <label for="venue_name">Find a chance to play</label>
+  <br>
+  <select id="activity_id" name="activity_id" class="form-control input-lg" required>
+    <% activities.each do |activity| %>
+        <option value="<%= activity.id%>"><%= activity.name %></option>
+    <% end %>
+  </select>
+
+  <label for="venue_name">Within</label>
+  <br>
+  <select id="radius" name="radius" class="form-control input-lg" required>
+    <option value="10" selected>10 miles</option>
+    <option value="50">50 miles</option>
+    <option value="100">100 miles</option>
+  </select>
+
+  <label for="venue_name">Of</label>
+  <br>
+  <input type="text" class="input-lg form-control" name="user_geo" required value="27587">
+
+  <br>
+
+  <input type="submit" name="search" value="Search" class="btn btn-primary btn-lg" />
+
+</form>

@@ -5,8 +5,24 @@ class EventsController < ApplicationController
   before_action :logged_in_user, only: [:new, :create, :edit, :update, :destroy]
 
 
+  def search
+    #puts 'Geocoding the address...'
+    address = GeocodedAddress.new(params['user_geo'])
+    #puts 'Done. The lat=' + address.latitude.to_s
+
+    #puts 'Initiating query...'
+    # find events within the search radius, and filter on the chosen criteria
+    @events = Event.within(params[:radius].to_i, :origin => [ address.latitude , address.longitude ])
+                  .where('activity_id=?', params['activity_id'])
+                  .where('start_date > ?', DateTime.now)
+                  .order('start_date')
+                  .paginate(page: params[:page])
+    #puts 'Done with query, returning'
+  end
+
+
   def index
-    @events = Event.all
+    @events = Event.paginate(page: params[:page])
   end
 
 

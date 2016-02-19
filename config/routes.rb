@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   end
   resources :venues
   resources :events
+  get    'search'   => 'events#search'
 
   get 'password_resets/new'
   get 'password_resets/edit'

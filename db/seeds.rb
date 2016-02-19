@@ -4,6 +4,7 @@ EventType.destroy_all
 Activity.destroy_all
 Venue.destroy_all
 User.destroy_all
+Event.destroy_all
 
 puts 'Creating users...'
 
@@ -142,6 +143,7 @@ v10 = Venue.create!(:name => 'Dr Pepper Center',
                     :zip => '75093',
                     :phone => Faker::PhoneNumber.cell_phone)
 
+=begin
 v11 = Venue.create!(:name => 'Some rink in Dallas',
                     :address1 => '2610 Allen St',
                     :address2 => '#5200',
@@ -157,6 +159,7 @@ v12 = Venue.create!(:name => 'Blades of Glory',
                     :state => 'TX',
                     :zip => '76040',
                     :phone => Faker::PhoneNumber.cell_phone)
+=end
 
 
 puts '...venues created.  Make sure the geocoding worked!!. Verify that latitudes and longitudes are filled in.'
@@ -222,5 +225,24 @@ Event.create!(:activity_id => Activity.first.id,
               :restrictions => Faker::Lorem.paragraph,
               :info_url => Faker::Internet.url,
               :registration_url => Faker::Internet.url)
+
+k = Venue.first.id
+9.times do |i|
+  30.times do |n|
+    Event.create!(:activity_id => Activity.first.id,
+                  :venue_id => k,
+                  :title => "Dummy example-#{n+1} event",
+                  :start_date => Date.tomorrow,
+                  :start_time => '8:00 pm',
+                  :subtitle => Faker::Lorem.sentence,
+                  :description => Faker::Lorem.paragraph,
+                  :details => Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph,
+                  :price => '$10',
+                  :restrictions => Faker::Lorem.paragraph,
+                  :info_url => Faker::Internet.url,
+                  :registration_url => Faker::Internet.url)
+  end
+  k += 1
+end
 
 puts 'Done.'
