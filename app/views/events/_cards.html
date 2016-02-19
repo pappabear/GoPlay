@@ -1,0 +1,13 @@
+<% events.each do |event| %>
+
+<ul class="users">
+    <li>
+        <strong><%= event.title %></strong>
+        <%= event.activity.name %><%= " - " + event.event_type.name unless event.event_type.nil? %>
+        <%= event.start_date.strftime("%m/%d/%Y") %>
+        <%= event.start_time %>
+    </li>
+</ul>
+
+
+<% end %>

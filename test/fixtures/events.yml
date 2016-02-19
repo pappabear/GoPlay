@@ -13,7 +13,5 @@ pickup:
   registration_url: 'http://google.com'
   start_date: <%= Date.today %>
   start_time: <%= Time.now %>
-  end_date: <%= Date.today %>
-  end_time: <%= Time.now %>
   recurrence: 0
 

@@ -42,10 +42,10 @@ ActiveRecord::Schema.define(version: 20160219130523) do
     t.string   "info_url"
     t.string   "registration_url"
     t.date     "start_date"
-    t.datetime "start_time"
-    t.date     "end_date"
-    t.datetime "end_time"
+    t.string   "start_time"
     t.integer  "recurrence"
+    t.float    "latitude"
+    t.float    "longitude"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end

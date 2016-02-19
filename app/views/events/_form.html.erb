@@ -1,0 +1,70 @@
+<%= form_for(@event, html: {class: 'form-horizontal'}) do |f| %>
+
+    <% if @event.errors.any? %>
+        <div id="error_explanation">
+          <div class="alert alert-danger">
+            The form contains <%= pluralize(@event.errors.count, "error") %>.
+          </div>
+          <ul>
+            <% @event.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+
+    <%= f.label 'Activity*', :class => 'control-label ' %>
+    <%= f.collection_select(:activity_id, Activity.all, :id, :name, {:include_blank => "- Choose one -"}, {:class => 'form-control'}) %>
+
+
+    <label class="control-label " for="event_event_type">Event Type</label>
+    <select id="event_event_type_id" name="event[event_type_id]" class="form-control">
+      <option value=""></option>
+    </select>
+
+    <%= f.label 'Venue*', :class => 'control-label' %>
+    <%= f.collection_select(:venue_id, Venue.all, :id, :name, {}, {:class => 'form-control'}) %>
+
+    <%= f.label 'Title*', :class => 'control-label' %>
+    <%= f.text_field :title, :class => 'form-control input-lg' %>
+
+    <%= f.label :subtitle, :class => 'control-label' %>
+    <%= f.text_field :subtitle, :class => 'form-control' %>
+
+    <%= f.label :description, :class => 'control-label' %>
+    <%= f.text_area :description, :class => 'form-control' %>
+
+    <%= f.label :details, :class => 'control-label' %>
+    <%= f.text_area :details, :class => 'form-control' %>
+
+    <%= f.label :price, :class => 'control-label' %>
+    <%= f.text_field :price, :class => 'form-control' %>
+
+    <%= f.label :restrictions, :class => 'control-label ' %>
+    <%= f.text_field :restrictions, :class => 'form-control' %>
+
+    <%= f.label :info_url, :class => 'control-label ' %>
+    <%= f.text_field :info_url, :class => 'form-control' %>
+
+    <%= f.label :registration_url, :class => 'control-label ' %>
+    <%= f.text_field :registration_url, :class => 'form-control' %>
+
+    <%= f.label 'Start Date', :class => 'control-label ' %>
+    <%= f.text_field :start_date, :class => 'form-control' %>
+
+    <%= f.label 'Start Time', :class => 'control-label ' %>
+    <%= f.text_field :start_time, :class => 'form-control' %>
+
+    <%= f.label 'Repeats', :class => 'control-label ' %>
+      <select class='form-control' name="event[recurrence]" id="event_recurrence">
+        <option value="0" selected>None</option>
+        <option value="1">Daily</option>
+        <option value="2">Weekly</option>
+        <option value="3">Monthly</option>
+      </select>
+
+    <%= f.submit "Save", class: "btn btn-primary" %>
+
+<% end %>
+
