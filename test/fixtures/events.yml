@@ -1,8 +1,8 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 pickup:
-  activity_id: 1
-  venue_id: 1
+  activity_id: <%= Activity.first.id %>
+  venue_id: <%= Venue.first.id %>
   title: 'Pickup Hockey'
   subtitle: 'some subtitle'
   description: 'some description'

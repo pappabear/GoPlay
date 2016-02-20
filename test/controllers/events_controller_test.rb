@@ -44,7 +44,7 @@ class EventsControllerTest < ActionController::TestCase
 
   test "should get events list" do
     log_in_as(@user)
-    get :index
+    get :index, page: 1
     assert_response :success
     assert_not_nil assigns(:events)
   end
