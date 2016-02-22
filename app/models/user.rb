@@ -1,14 +1,45 @@
 class User < ActiveRecord::Base
+
   attr_accessor :remember_token, :activation_token, :reset_token
+
   before_save   :downcase_email
+
   before_create :create_activation_digest
+
   validates :name,  presence: true, length: { maximum: 50 }
+
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\-.]+\.[a-z]+\z/i
+
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
+
   has_secure_password
+
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+
+  after_validation :geocode_the_address, :on => [:create, :update]
+
+
+  def geocode_the_address
+
+    if self.zip.nil?
+      return
+    end
+
+    begin
+      address = GeocodedAddress.new(self.zip.downcase.tr(" ", "+"))
+    rescue Exception => e
+      errors.add(:zip, "address is not geocodeable. We can't determine the latitude and longitude. Please enter a valid address. #{e.message}")
+      return
+    end
+
+    self.zip = address.formatted_address
+    self.latitude = address.latitude
+    self.longitude = address.longitude
+
+  end
+
 
   # Returns the hash digest of the given string.
   def User.digest(string)

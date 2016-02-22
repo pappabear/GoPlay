@@ -1,5 +1,5 @@
 <% provide(:title, 'My Settings') %>
-<h1>Update your profile</h1>
+<h1>My Settings</h1>
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
@@ -17,8 +17,16 @@
       
       <%= f.label :password_confirmation, "Confirmation" %>
       <%= f.password_field :password_confirmation, class: 'form-control' %>
-      
-      <%= f.submit "Save changes", class: "btn btn-primary" %>
+
+        <%= f.label "My Location" %>
+        <i>(For finding chances to play near you; for example, "Wake Forest, NC" or "27587")</i>
+        <%= f.text_field :zip, class: 'form-control' %>
+
+        <%= f.label "Date of birth" %>
+        <i>(For filtering out age-restricted chances)</i>
+        <%= f.date_field :dob, class: 'form-control col-lg-3' %><br />
+
+        <%= f.submit "Save changes", class: "btn btn-primary" %>
     <% end %>
     
     <div class="gravatar_edit">
