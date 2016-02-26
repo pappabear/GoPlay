@@ -1,4 +1,5 @@
 <% provide(:title, 'My Settings') %>
+<% activities = Activity.all %>
 <h1>My Settings</h1>
 
 <div class="row">
@@ -6,6 +7,7 @@
     <%= form_for(@user) do |f| %>
         <%= render 'shared/error_messages' %>
 
+        <h3>My Info</h3>
         <%= f.label :name %>
         <%= f.text_field :name, class: 'form-control' %>
 
@@ -24,7 +26,55 @@
 
         <%= f.label "Date of birth" %>
         <i style="color:gray">(For filtering out age-restricted chances)</i>
-        <%= f.date_field :dob, class: 'form-control col-lg-3' %><br/>
+        <%= f.text_field :dob, class: 'form-control' %>
+
+        <h3>Activity</h3>
+        <%= f.label "My 'default' activity to send notifications about" %>
+        <select id="user_activity_id" name="[user]activity_id" class="form-control" required>
+          <% activities.each do |activity| %>
+              <option value="<%= activity.id %>"><%= activity.name %></option>
+          <% end %>
+        </select>
+
+        <h3>Basic Notifications</h3>
+        <table border="0" width="100%">
+          <tr>
+            <td width="10%" valign="top"><%= f.radio_button :basic_notifications_mode, 'none', :checked => (@user.basic_notifications_mode == 'none'), :class => 'form-control' %></td>
+            <td width="20%" valign="top"><label class="form-label" style="padding-bottom: 25px;">None</label></td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td width="10%" valign="top"><%= f.radio_button :basic_notifications_mode, 'email', :checked => (@user.basic_notifications_mode == 'email'), :class => 'form-control' %></td>
+            <td width="20%" valign="top"><label class="form-label">Email</label></td>
+            <td valign="middle"><%= f.text_field :basic_notifications_email, :class => 'form-control' %></td>
+          </tr>
+          <tr>
+            <td width="10%" valign="top"><%= f.radio_button :basic_notifications_mode, 'text', :checked => (@user.basic_notifications_mode == 'text'), :class => 'form-control' %></td>
+            <td width="20%" valign="top"><label class="form-label">Text</label></td>
+            <td valign="middle"><%= f.text_field :basic_notifications_phone_number, :class => 'form-control' %></td>
+          </tr>
+        </table>
+
+        <h3>Urgent Notifications</h3>
+        <table border="0" width="100%">
+          <tr>
+            <td width="10%" valign="top"><%= f.radio_button :urgent_notifications_mode, 'none', :checked => (@user.urgent_notifications_mode == 'none'), :class => 'form-control' %></td>
+            <td width="20%" valign="top"><label class="form-label" style="padding-bottom: 25px;">None</label></td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td width="10%" valign="top"><%= f.radio_button :urgent_notifications_mode, 'email', :checked => (@user.urgent_notifications_mode == 'email'), :class => 'form-control' %></td>
+            <td width="20%" valign="top"><label class="form-label">Email</label></td>
+            <td valign="middle"><%= f.text_field :urgent_notifications_email, :class => 'form-control' %></td>
+          </tr>
+          <tr>
+            <td width="10%" valign="top"><%= f.radio_button :urgent_notifications_mode, 'text', :checked => (@user.urgent_notifications_mode == 'text'), :class => 'form-control' %></td>
+            <td width="20%" valign="top"><label class="form-label">Text</label></td>
+            <td valign="middle"><%= f.text_field :urgent_notifications_phone_number, :class => 'form-control' %></td>
+          </tr>
+        </table>
+
+
 
         <%= f.submit "Save changes", class: "btn btn-primary" %>
     <% end %>
