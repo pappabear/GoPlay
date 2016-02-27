@@ -1,10 +1,20 @@
 class User < ActiveRecord::Base
 
+
+  # --- accessors --------------------------------
+
   attr_accessor :remember_token, :activation_token, :reset_token
+
+
+  # --- filters --------------------------------
 
   before_save :downcase_email
 
   before_create :create_activation_digest
+
+
+
+  # --- validations --------------------------------
 
   validates :name, presence: true, length: {maximum: 50}
 
@@ -14,14 +24,37 @@ class User < ActiveRecord::Base
             format: {with: VALID_EMAIL_REGEX},
             uniqueness: {case_sensitive: false}
 
+  validates :basic_notifications_email,
+            format: {with: VALID_EMAIL_REGEX, message: "%{value} is not in a valid format"},
+            allow_blank: true
+
+  validates :urgent_notifications_email,
+            format: {with: VALID_EMAIL_REGEX, message: "%{value} is not in a valid format"},
+            allow_blank: true
+
+  VALID_PHONE_NUMBER_REGEX = /\A(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}\z/
+
+  validates :basic_notifications_phone_number,
+            format: {with: VALID_PHONE_NUMBER_REGEX, message: "%{value} is not in a valid format"},
+            allow_blank: true
+
+  validates :urgent_notifications_phone_number,
+            format: {with: VALID_PHONE_NUMBER_REGEX, message: "%{value} is not in a valid format"},
+            allow_blank: true
+
   has_secure_password
 
   validates :password, presence: true, length: {minimum: 6}, allow_nil: true
 
   validate :notifications_preferences
 
+
+
   after_validation :geocode_the_address, :on => [:create, :update]
 
+
+
+  # --- public methods --------------------------------
 
   def geocode_the_address
 
@@ -122,9 +155,6 @@ class User < ActiveRecord::Base
       #return
     end
 
-    puts 'self.urgent_notifications_mode=' + self.urgent_notifications_mode
-    puts 'self.urgent_notifications_email=' + self.urgent_notifications_email + '.'
-
     if self.urgent_notifications_mode == 'none'
       #return
     elsif self.urgent_notifications_mode == 'email'
@@ -137,6 +167,10 @@ class User < ActiveRecord::Base
 
 
   end
+
+
+
+  # --- private methods --------------------------------
 
 
   private
