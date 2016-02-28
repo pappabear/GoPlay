@@ -39,9 +39,21 @@ class UsersController < ApplicationController
 
   def edit
   end
-  
+
+
+  def notifications
+    @user = current_user
+  end
+
+
+  def activities
+    @user = current_user
+    @activities = Activity.all
+  end
+
 
   def update
+    params[:user][:activity_ids] ||= []
     if @user.update_attributes(user_params)
       flash[:success] = "Profile updated"
       redirect_to @user
@@ -62,7 +74,7 @@ class UsersController < ApplicationController
     
 
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation, :zip, :dob, :activity_id,
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :zip, :dob, {:activity_ids => []},
                                    :basic_notifications_mode, :basic_notifications_email, :basic_notifications_phone_number,
                                    :urgent_notifications_mode, :urgent_notifications_email, :urgent_notifications_phone_number)
     end

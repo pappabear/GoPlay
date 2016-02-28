@@ -7,7 +7,7 @@
 
     <ul class="nav nav-tabs">
       <li role="presentation" class="active"><a href="#">My Info</a></li>
-      <li role="presentation"><a href="#">Activities</a></li>
+      <li role="presentation"><a href="/users/<%= @user.id %>/activities">Activities</a></li>
       <li role="presentation"><a href="/users/<%= @user.id %>/notifications">Notifications</a></li>
     </ul>
 
@@ -35,13 +35,14 @@
         <i style="color:gray">(For filtering out age-restricted chances)</i>
         <%= f.text_field :dob, class: 'form-control' %>
 
-        <h3>Activity</h3>
-        <%= f.label "My 'default' activity to send notifications about" %>
-        <select id="user_activity_id" name="[user]activity_id" class="form-control" required>
-          <% activities.each do |activity| %>
-              <option value="<%= activity.id %>"><%= activity.name %></option>
+        <table style="display:none">
+          <% Activity.all.each do |activity| %>
+              <tr>
+                <td width="20%"><%= check_box_tag "user[activity_ids][]", activity.id, @user.activities.include?(activity) %></td>
+                <td><b><%= activity.name %></b></td>
+              </tr>
           <% end %>
-        </select>
+        </table>
 
         <%= f.submit "Save changes", class: "btn btn-primary" %>
     <% end %>

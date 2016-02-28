@@ -24,6 +24,7 @@ Rails.application.routes.draw do
 
   resources :users do
     get     'notifications' => 'users#notifications'
+    get     'activities' => 'users#activities'
   end
 
   resources :account_activations, only: [:edit]
