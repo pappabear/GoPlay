@@ -139,6 +139,11 @@ class User < ActiveRecord::Base
   end
 
 
+  def email_hq_about_new_user
+    UserMailer.email_hq_about_new_user(self).deliver_now
+  end
+
+
   # Returns true if a password reset has expired.
   def password_reset_expired?
     reset_sent_at < 2.hours.ago

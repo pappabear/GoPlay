@@ -1,10 +1,6 @@
-<h1>GoPlay</h1>
+<h1>Welcome to GoPlay!</h1>
 
-<p>Hi <%= @user.name %>,</p>
-
-<p>
-Welcome to GoPlay! Click on the link below to activate your account:
-</p>
+<p>Hi <%= @user.name %>, click on the link below to activate your account:</p>
 
 <%= link_to "Activate", edit_account_activation_url(@user.activation_token, 
                                                     email: @user.email) %>
