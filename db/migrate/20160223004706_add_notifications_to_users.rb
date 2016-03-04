@@ -3,7 +3,7 @@ class AddNotificationsToUsers < ActiveRecord::Migration
     add_column :users, :basic_notifications_mode, :string, :default=>'none'
     add_column :users, :basic_notifications_email, :string
     add_column :users, :basic_notifications_phone_number, :string
-    add_column :users, :basic_notifications_frequency, :string
+    add_column :users, :basic_notifications_frequency, :string, :default=>'weekly'
     add_column :users, :urgent_notifications_mode, :string, :default=>'none'
     add_column :users, :urgent_notifications_email, :string
     add_column :users, :urgent_notifications_phone_number, :string

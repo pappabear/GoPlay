@@ -58,8 +58,8 @@ ActiveRecord::Schema.define(version: 20160228001401) do
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
-    t.datetime "created_at",                                         null: false
-    t.datetime "updated_at",                                         null: false
+    t.datetime "created_at",                                           null: false
+    t.datetime "updated_at",                                           null: false
     t.string   "password_digest"
     t.string   "remember_digest"
     t.boolean  "admin",                             default: false
@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(version: 20160228001401) do
     t.string   "basic_notifications_mode",          default: "none"
     t.string   "basic_notifications_email"
     t.string   "basic_notifications_phone_number"
-    t.string   "basic_notifications_frequency"
+    t.string   "basic_notifications_frequency",     default: "weekly"
     t.string   "urgent_notifications_mode",         default: "none"
     t.string   "urgent_notifications_email"
     t.string   "urgent_notifications_phone_number"

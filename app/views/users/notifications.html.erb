@@ -33,6 +33,20 @@
           </tr>
         </table>
 
+        <p>Notifications Frequency</p>
+        <table border="0" width="100%">
+          <tr>
+            <td width="10%" valign="top"><%= f.radio_button :basic_notifications_frequency, 'daily', :checked => (@user.basic_notifications_frequency == 'daily'), :class => 'form-control' %></td>
+            <td width="20%" valign="top"><label class="form-label" style="padding-bottom: 25px;">Daily</label></td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td width="10%" valign="top"><%= f.radio_button :basic_notifications_frequency, 'weekly', :checked => (@user.basic_notifications_frequency == 'weekly'), :class => 'form-control' %></td>
+            <td width="20%" valign="top"><label class="form-label">Weekly (Fridays)</label></td>
+          </tr>
+        </table>
+
+        <p>&nbsp;</p>
         <p>Urgent Notifications</p>
         <table border="0" width="100%">
           <tr>
