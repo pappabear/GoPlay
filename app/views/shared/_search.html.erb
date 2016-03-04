@@ -1,8 +1,8 @@
 <% activities = Activity.all %>
 <% # set the default search focus
    if current_user
-     z = current_user.zip
-     a = current_user.activities.first.id
+     z = current_user.zip unless current_user.zip == ""
+     a = current_user.activities.first.id unless current_user.activities.count == 0
    else
      z = "New York City, NY"
      a = 0
