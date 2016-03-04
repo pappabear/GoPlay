@@ -1,0 +1,12 @@
+Here are chances to GoPlay
+
+<% @events.each do |event| %>
+
+        <%= event.title %> at <%= event.venue.name %>
+        <%= event.activity.name %><%= " / " + event.event_type.name unless event.event_type.nil? %>
+        on <%= event.start_date.strftime("%m/%d/%Y") %>
+        at <%= event.start_time %>
+        Cost: <%= event.price %>
+        Restrictions: <%= event.restrictions %>
+
+<% end %>
