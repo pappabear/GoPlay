@@ -17,25 +17,25 @@ User.create(name: "Chip Irek", email: "chip.irek@gmail.com", password: "lollip0p
             admin: true,
             activated_at: Time.zone.now)
 
-User.create!(name: "Example User",
-             email: "example@railstutorial.org",
-             password: "foobar",
-             password_confirmation: "foobar",
-             admin: true,
-             activated: true,
-             activated_at: Time.zone.now)
+# User.create!(name: "Example User",
+#              email: "example@railstutorial.org",
+#              password: "foobar",
+#              password_confirmation: "foobar",
+#              admin: true,
+#              activated: true,
+#              activated_at: Time.zone.now)
 
-30.times do |n|
-  name = Faker::Name.name
-  email = "example-#{n+1}@railstutorial.org"
-  password = "password"
-  User.create!(name: name,
-               email: email,
-               password: password,
-               password_confirmation: password,
-               activated: true,
-               activated_at: Time.zone.now)
-end
+# 30.times do |n|
+#   name = Faker::Name.name
+#   email = "example-#{n+1}@railstutorial.org"
+#   password = "password"
+#   User.create!(name: name,
+#                email: email,
+#                password: password,
+#                password_confirmation: password,
+#                activated: true,
+#                activated_at: Time.zone.now)
+# end
 
 puts 'Creating activities...'
 
@@ -226,23 +226,23 @@ Event.create!(:activity_id => Activity.first.id,
               :info_url => Faker::Internet.url,
               :registration_url => Faker::Internet.url)
 
-k = Venue.first.id
-9.times do |i|
-  30.times do |n|
-    Event.create!(:activity_id => Activity.first.id,
-                  :venue_id => k,
-                  :title => "Dummy example-#{n+1} event",
-                  :start_date => Date.tomorrow,
-                  :start_time => '8:00 pm',
-                  :subtitle => Faker::Lorem.sentence,
-                  :description => Faker::Lorem.paragraph,
-                  :details => Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph,
-                  :price => '$10',
-                  :restrictions => Faker::Lorem.paragraph,
-                  :info_url => Faker::Internet.url,
-                  :registration_url => Faker::Internet.url)
-  end
-  k += 1
-end
+# k = Venue.first.id
+# 9.times do |i|
+#   30.times do |n|
+#     Event.create!(:activity_id => Activity.first.id,
+#                   :venue_id => k,
+#                   :title => "Dummy example-#{n+1} event",
+#                   :start_date => Date.tomorrow,
+#                   :start_time => '8:00 pm',
+#                   :subtitle => Faker::Lorem.sentence,
+#                   :description => Faker::Lorem.paragraph,
+#                   :details => Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph,
+#                   :price => '$10',
+#                   :restrictions => Faker::Lorem.paragraph,
+#                   :info_url => Faker::Internet.url,
+#                   :registration_url => Faker::Internet.url)
+#   end
+#   k += 1
+# end
 
 puts 'Done.'
