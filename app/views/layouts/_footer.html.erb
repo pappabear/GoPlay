@@ -1,12 +1,36 @@
-<footer class="footer">
-  <small>
-    GoPlay &copy; 2015 by Strategem Alliance
-  </small>
-  <nav>
-    <ul>
-      <li><%= link_to "About",   about_path %></li>
-      <li><%= link_to "Contact", contact_path %></li>
-      <li><%= link_to "News", news_path %></li>
-    </ul>
-  </nav>
+<footer class="footer footer-black">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-sm-4">
+        <div class="logo text-center">
+          <h3>GoPlay</h3>
+        </div>
+      </div>
+      <div class="col-md-6 col-md-offset-2 col-sm-8">
+        <div class="links">
+          <ul>
+            <li><%= link_to "Home", root_path %></li>
+            <li><%= link_to "Help", help_path %></li>
+            <li><%= link_to "About", about_path %></li>
+            <li><%= link_to "Contact", contact_path %></li>
+            <li><%= link_to "News", news_path %></li>
+          </ul>
+          <hr />
+          <div class="copyright">
+            <div class="pull-left">
+              &copy; 2016 Strategem Alliance Inc.
+            </div>
+            <div class="pull-right">
+              <ul>
+                <li><%= link_to "Terms", terms_path %></li>                |
+                <li><%= link_to "Privacy", privacy_path %></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </footer>
