@@ -1,5 +1,8 @@
 class StaticPagesController < ApplicationController
-  
+
+  layout 'landing'
+
+
   def home
   end
 
@@ -11,4 +14,12 @@ class StaticPagesController < ApplicationController
   
   def contact
   end
+
+  def terms
+  end
+
+  def privacy
+  end
+
+
 end
