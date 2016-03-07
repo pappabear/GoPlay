@@ -32,6 +32,6 @@ class StaticPagesControllerTest < ActionController::TestCase
   test "should get contact" do
     get :contact
     assert_response :success
-    assert_select "title", "Contact | GoPlay"
+    assert_select "title", "Contact Us | GoPlay"
   end
 end
