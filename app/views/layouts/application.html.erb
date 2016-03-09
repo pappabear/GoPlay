@@ -30,13 +30,16 @@
 
 <div class="wrapper" style="padding-top: 6em;">
 
-  <div class="container">
-    <% flash.each do |message_type, message| %>
-        <div class="alert alert-<%= message_type %>"><%= message %></div>
-    <% end %>
-    <%= yield %>
-  </div>
+  <div class="section section-nude">
 
+    <div class="container">
+      <% flash.each do |message_type, message| %>
+          <div class="alert alert-<%= message_type %>"><%= message %></div>
+      <% end %>
+      <%= yield %>
+    </div>
+
+  </div>
 </div>
 
 <%= render 'layouts/footer' %>
