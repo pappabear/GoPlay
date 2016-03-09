@@ -1,31 +1,44 @@
-<h1>Event Types for <%= @activity.name %></h1>
+<% provide(:title, 'Admin -> Event Types') %>
 
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
+  <div class="col-md-8 col-md-offset-2">
+    <h4>Event Types for <%= @activity.name %></h4>
 
     <% if @activity.event_types.count == 0 %>
         <h5>None</h5>
     <% end %>
 
-    <ul class="users">
-      <% @activity.event_types.each do |et| %>
-          <li>
-            <%= link_to et.name, edit_activity_event_type_path(@activity, et), style: 'font-weight:bold; font-size:1.25em;' %>
-            <%= link_to '[Delete]', activity_event_type_path(@activity, et), method: :delete, data: {confirm: 'Are you sure?'}, class: 'pull-right' %>
-            <span class="pull-right">&nbsp;|&nbsp;</span>
-            <%= link_to '[Edit]', edit_activity_event_type_path(@activity, et), class: 'pull-right' %>
-          </li>
-          </li>
-      <% end %>
-    </ul>
+    <div class="table-responsive">
 
-    <br>
+      <table class="table">
+        <tbody>
 
-    <%= link_to 'Add Event Type', new_activity_event_type_path(@activity), class: 'btn btn-large btn-primary' %>
+        <% @activity.event_types.each do |et| %>
 
+            <tr>
+              <td><%= et.name %></td>
+              <td class="td-actions text-right">
+
+                <%= link_to "<button type='button' rel='tooltip' title='Remove' class='btn btn-danger btn-simple btn-sm'><i class='fa fa-times'></i></button>".html_safe,
+                            activity_event_type_path(@activity, et), method: :delete, data: {confirm: 'Are you sure?'}, class: 'pull-right' %>
+
+                <%= link_to "<button type='button' rel='tooltip' title='Edit Activity Name' class='btn btn-success btn-simple btn-sm'><i class='fa fa-edit'></i></button>".html_safe,
+                            edit_activity_event_type_path(@activity, et), class: 'pull-right' %>
+
+              </td>
+            </tr>
+
+        <% end %>
+
+        </tbody>
+      </table>
+    </div>
+
+    <%= link_to 'Setup a new event type', new_activity_event_type_path(@activity), class: "btn btn-lg btn-primary" %>
     <p>&nbsp;</p>
-
-    <%= link_to 'Back to Activities', activities_path %>
+    <%= link_to 'Back to list of activities', activities_path %>
 
   </div>
 </div>
+
+

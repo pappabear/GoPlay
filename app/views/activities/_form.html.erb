@@ -1,17 +1,9 @@
 <%= form_for(@activity) do |f| %>
-    <% if @activity.errors.any? %>
-        <div id="error_explanation">
-          <div class="alert alert-danger">
-            The form contains <%= pluralize(@activity.errors.count, "error") %>.
-          </div>
-          <ul>
-            <% @activity.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-            <% end %>
-          </ul>
-        </div>
-    <% end %>
-    <%= f.label :name %><br>
-    <%= f.text_field :name, class: 'form-control' %>
+
+    <div class="form-group <%= "has-error".html_safe unless @activity.errors[:name].blank? %>">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control border-input' %>
+    </div>
+
     <%= f.submit "Save", class: "btn btn-primary" %>
 <% end %>
