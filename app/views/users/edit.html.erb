@@ -84,7 +84,7 @@
                   Daily email of upcoming openings
                 </div>
                 <div class="col-xs-3">
-                  <input type="checkbox" checked data-toggle="switch" class="ct-info" />
+                  <input type="checkbox" <%= "checked".html_safe if @user.receive_basic_notifications? %> data-toggle="switch" class="ct-info" name="user[receive_basic_notifications]" id="user_receive_basic_notifications" />
                 </div>
               </div>
             </li>
@@ -94,7 +94,7 @@
                   Text messages for urgent openings
                 </div>
                 <div class="col-xs-3">
-                  <input type="checkbox" checked data-toggle="switch" class="ct-info" />
+                  <input type="checkbox" <%= "checked".html_safe if @user.receive_urgent_notifications? %> data-toggle="switch" class="ct-info" name="user[receive_urgent_notifications]" id="user_receive_urgent_notifications" />
                 </div>
               </div>
             </li>

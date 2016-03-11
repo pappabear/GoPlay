@@ -55,8 +55,21 @@ class UsersController < ApplicationController
 
   def update
     params[:user][:activity_ids] ||= []
+
+    if !params[:user][:receive_basic_notifications].nil?
+      @user.receive_basic_notifications = true
+    else
+      @user.receive_basic_notifications = false
+    end
+
+    if !params[:user][:receive_urgent_notifications].nil?
+      @user.receive_urgent_notifications = true
+    else
+      @user.receive_urgent_notifications = false
+    end
+
     if @user.update_attributes(user_params)
-      flash[:success] = "Profile updated"
+      flash[:success] = "Settings updated"
       redirect_to edit_user_path(@user)
     else
       render 'edit'
@@ -87,7 +100,7 @@ class UsersController < ApplicationController
     def logged_in_user
       unless logged_in?
         store_location
-        flash[:danger] = "Please log in."
+        flash[:danger] = "Please log in"
         redirect_to login_url
       end
     end
