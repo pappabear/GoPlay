@@ -73,8 +73,8 @@ ActiveRecord::Schema.define(version: 20160309203102) do
     t.float    "latitude"
     t.float    "longitude"
     t.string   "phone"
-    t.boolean  "receive_basic_notifications"
-    t.boolean  "receive_urgent_notifications"
+    t.boolean  "receive_basic_notifications",  default: true
+    t.boolean  "receive_urgent_notifications", default: true
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

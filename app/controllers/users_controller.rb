@@ -77,8 +77,7 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation, :zip, :dob, {:activity_ids => []},
                                    :basic_notifications_mode, :basic_notifications_email,
-                                   :basic_notifications_phone_number, :basic_notifications_frequency,
-                                   :urgent_notifications_mode, :urgent_notifications_email, :urgent_notifications_phone_number)
+                                   :receive_basic_notifications, :receive_urgent_notifications, :phone)
     end
     
 

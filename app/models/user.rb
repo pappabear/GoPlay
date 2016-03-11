@@ -46,7 +46,11 @@ class User < ActiveRecord::Base
   def geocode_the_address
 
     if self.zip.nil?
-      self.zip = "Raleigh, NC"
+      #self.zip = ""
+      return
+    end
+
+    if self.zip == ""
       return
     end
 

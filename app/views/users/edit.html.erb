@@ -57,8 +57,13 @@
 
           <div class="form-group <%= "has-error".html_safe unless @user.errors[:zip].blank? %>">
             <%= f.label "Location" %>
-            <small>(For locating openings near you; for example, "Wake Forest, NC" or "27587")</small>
+            <small>(For locating openings near you; i.e. "Wake Forest, NC" or "27587")</small>
             <%= f.text_field :zip, class: 'form-control border-input' %>
+          </div>
+
+          <div class="form-group <%= "has-error".html_safe unless @user.errors[:phone].blank? %>">
+            <%= f.label :phone %>
+            <%= f.text_field :phone, class: 'form-control border-input' %>
           </div>
 
           <div class="form-group <%= "has-error".html_safe unless @user.errors[:dob].blank? %>">
@@ -69,6 +74,7 @@
                               {order: [:month, :day, :year],
                                start_year: Date.today.year - 70} %>
           </div>
+
 
           <label>Notifications</label>
           <ul class="notifications">
@@ -85,7 +91,7 @@
             <li class="notification-item">
               <div class="row">
                 <div class="col-xs-9">
-                  Text messages for urgent
+                  Text messages for urgent openings
                 </div>
                 <div class="col-xs-3">
                   <input type="checkbox" checked data-toggle="switch" class="ct-info" />
