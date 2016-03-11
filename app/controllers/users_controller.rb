@@ -20,11 +20,6 @@ class UsersController < ApplicationController
   end
 
 
-  def notifications
-    @user = current_user
-  end
-
-
   def create
     @user = User.new(user_params)
     if @user.save
@@ -39,17 +34,6 @@ class UsersController < ApplicationController
   
 
   def edit
-  end
-
-
-  def notifications
-    @user = current_user
-  end
-
-
-  def activities
-    @user = current_user
-    @activities = Activity.all
   end
 
 

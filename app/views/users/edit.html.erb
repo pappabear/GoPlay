@@ -100,16 +100,23 @@
             </li>
           </ul>
 
-          <div class="form-group <%= "has-error".html_safe unless @user.errors[:password].blank? %>">
-            <%= f.label :password %>
-            <%= f.password_field :password, class: 'form-control border-input' %>
-          </div>
+          <label>Activities</label>
+          <ul class="notifications">
+            <li class="notification-item">
+              <% Activity.all.each do |activity| %>
 
-          <div class="form-group <%= "has-error".html_safe unless @user.errors[:password_confirmation].blank? %>">
-            <%= f.label :password_confirmation, "Confirmation" %>
-            <small>(Need to confirm for all changes, please!)</small>
-            <%= f.password_field :password_confirmation, class: 'form-control border-input' %>
-          </div>
+                    <label class="checkbox checkbox-azure" for="checkbox<%= activity.id %>">
+
+                      <input type="checkbox" name="user[activity_ids][]" id="checkbox<%= activity.id %>" value="<%= activity.id %>" id="checkbox<%= activity.id %>" data-toggle="checkbox" <%= "checked".html_safe if @user.activities.include?(activity) %>>
+
+                      <%= activity.name %>
+
+                    </label>
+
+              <% end %>
+            </li>
+          </ul>
+
 
           <%= f.submit "Save", class: "btn btn-success" %>
 

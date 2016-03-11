@@ -25,8 +25,7 @@ Rails.application.routes.draw do
   delete  'logout'  => 'sessions#destroy'
 
   resources :users do
-    get     'notifications' => 'users#notifications'
-    get     'activities' => 'users#activities'
+  #  get     'change_password' => 'users#change_password'
   end
 
   resources :account_activations, only: [:edit]
