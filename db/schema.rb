@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160228001401) do
+ActiveRecord::Schema.define(version: 20160309203102) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,13 +58,13 @@ ActiveRecord::Schema.define(version: 20160228001401) do
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
-    t.datetime "created_at",                                           null: false
-    t.datetime "updated_at",                                           null: false
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
     t.string   "password_digest"
     t.string   "remember_digest"
-    t.boolean  "admin",                             default: false
+    t.boolean  "admin",                        default: false
     t.string   "activation_digest"
-    t.boolean  "activated",                         default: false
+    t.boolean  "activated",                    default: false
     t.datetime "activated_at"
     t.string   "reset_digest"
     t.datetime "reset_sent_at"
@@ -72,13 +72,9 @@ ActiveRecord::Schema.define(version: 20160228001401) do
     t.date     "dob"
     t.float    "latitude"
     t.float    "longitude"
-    t.string   "basic_notifications_mode",          default: "none"
-    t.string   "basic_notifications_email"
-    t.string   "basic_notifications_phone_number"
-    t.string   "basic_notifications_frequency",     default: "weekly"
-    t.string   "urgent_notifications_mode",         default: "none"
-    t.string   "urgent_notifications_email"
-    t.string   "urgent_notifications_phone_number"
+    t.string   "phone"
+    t.boolean  "receive_basic_notifications"
+    t.boolean  "receive_urgent_notifications"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

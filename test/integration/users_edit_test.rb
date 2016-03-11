@@ -32,7 +32,7 @@ class UsersEditTest < ActionDispatch::IntegrationTest
                                     password:              "",
                                     password_confirmation: "" }
     assert_not flash.empty?
-    assert_redirected_to @user
+    assert_redirected_to edit_user_path(@user)
     @user.reload
     assert_equal name,  @user.name
     assert_equal email, @user.email
@@ -51,7 +51,7 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     patch user_path(@user), user: { id:  @user.id, activity_ids: [act1, act2]}
 
     assert_not flash.empty?
-    assert_redirected_to @user
+    assert_redirected_to edit_user_path(@user)
     @user.reload
 
     c = @user.activities.count

@@ -26,30 +26,15 @@ class User < ActiveRecord::Base
             format: {with: VALID_EMAIL_REGEX},
             uniqueness: {case_sensitive: false}
 
-  validates :basic_notifications_email,
-            format: {with: VALID_EMAIL_REGEX, message: "%{value} is not in a valid format"},
-            allow_blank: true
-
-  validates :urgent_notifications_email,
-            format: {with: VALID_EMAIL_REGEX, message: "%{value} is not in a valid format"},
-            allow_blank: true
-
   VALID_PHONE_NUMBER_REGEX = /\A(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}\z/
 
-  validates :basic_notifications_phone_number,
-            format: {with: VALID_PHONE_NUMBER_REGEX, message: "%{value} is not in a valid format"},
-            allow_blank: true
-
-  validates :urgent_notifications_phone_number,
+  validates :phone,
             format: {with: VALID_PHONE_NUMBER_REGEX, message: "%{value} is not in a valid format"},
             allow_blank: true
 
   has_secure_password
 
   validates :password, presence: true, length: {minimum: 6}, allow_nil: true
-
-  validate :notifications_preferences
-
 
 
   after_validation :geocode_the_address, :on => [:create, :update]
@@ -61,6 +46,7 @@ class User < ActiveRecord::Base
   def geocode_the_address
 
     if self.zip.nil?
+      self.zip = "Raleigh, NC"
       return
     end
 
@@ -150,27 +136,6 @@ class User < ActiveRecord::Base
   end
 
 
-  def notifications_preferences
-
-    if self.basic_notifications_mode == 'none'
-      #return
-    elsif self.basic_notifications_mode == 'email'
-      errors.add(:basic_notifications_email, "cannot be blank if you want email") if self.basic_notifications_email == ""
-      #return
-    elsif self.basic_notifications_mode == 'text'
-      errors.add(:basic_notifications_text, "cannot be blank if you want a text") if self.basic_notifications_phone_number == ""
-      #return
-    end
-
-    if self.urgent_notifications_mode == 'none'
-      #return
-    elsif self.urgent_notifications_mode == 'email'
-      errors.add(:urgent_notifications_email, "cannot be blank if you want email") if self.urgent_notifications_email == ""
-      #return
-    elsif self.urgent_notifications_mode == 'text'
-      errors.add(:urgent_notifications_text, "cannot be blank if you want a text") if self.urgent_notifications_phone_number == ""
-      #return
-    end
 
 
   end
@@ -196,4 +161,4 @@ class User < ActiveRecord::Base
   end
 
 
-end
+
