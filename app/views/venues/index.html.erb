@@ -1,19 +1,44 @@
-<% provide(:title, 'Venues') %>
-<h1>Venues</h1>
-
-
-<%= will_paginate %>
-
-<ul class="users">
-  <%= render @venues %>
-</ul>
-
-<%= will_paginate %>
-
-
-<br />
-<%= link_to 'New Venue', new_venue_path, class: "btn btn-lg btn-primary" %>
+<% provide(:title, 'All Venues') %>
 
 
 
+<div class="container">
+  <h3 class="title">Venues</h3>
 
+  <%= will_paginate %>
+
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Venue</th>
+        <th class="text-right">Actions</th>
+      </tr>
+      </thead>
+
+      <tbody>
+
+      <% @venues.each do |venue| %>
+          <tr>
+            <td>  <%= link_to venue.name, edit_venue_path(venue) %>
+              <br/> <%= venue.formatted_address %>
+              <br/> <%= venue.phone %>
+            </td>
+            <td class="td-actions text-right">
+              <% if current_user.admin? %>
+                  <%= link_to "delete", venue, method: :delete, data: {confirm: "You sure?"}, class: 'pull-right btn btn-danger' %>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+      <% end %>
+
+      </tbody>
+    </table>
+  </div>
+
+  <%= will_paginate %>
+
+  <%= link_to 'Setup a new venue', new_venue_path, class: "btn btn-lg btn-default" %>
+
+</div>

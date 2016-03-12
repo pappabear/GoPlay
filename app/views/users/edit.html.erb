@@ -40,70 +40,70 @@
 
 
   <div class="settings">
-  <div class="row">
-    <div class="col-md-6 col-md-offset-3">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
 
-      <%= form_for @user, :html => {:class => 'settings-form'} do |f| %>
+        <%= form_for @user, :html => {:class => 'settings-form'} do |f| %>
 
-          <div class="form-group <%= "has-error".html_safe unless @user.errors[:name].blank? %>">
-            <%= f.label :name %>
-            <%= f.text_field :name, class: 'form-control border-input' %>
-          </div>
+            <div class="form-group <%= "has-error".html_safe unless @user.errors[:name].blank? %>">
+              <%= f.label :name %>
+              <%= f.text_field :name, class: 'form-control border-input' %>
+            </div>
 
-          <div class="form-group <%= "has-error".html_safe unless @user.errors[:email].blank? %>">
-            <%= f.label :email %>
-            <%= f.text_field :email, class: 'form-control border-input' %>
-          </div>
+            <div class="form-group <%= "has-error".html_safe unless @user.errors[:email].blank? %>">
+              <%= f.label :email %>
+              <%= f.text_field :email, class: 'form-control border-input' %>
+            </div>
 
-          <div class="form-group <%= "has-error".html_safe unless @user.errors[:zip].blank? %>">
-            <%= f.label "Location" %>
-            <small>(For locating openings near you; i.e. "Wake Forest, NC" or "27587")</small>
-            <%= f.text_field :zip, class: 'form-control border-input' %>
-          </div>
+            <div class="form-group <%= "has-error".html_safe unless @user.errors[:zip].blank? %>">
+              <%= f.label "Location" %>
+              <small>(For locating openings near you; i.e. "Wake Forest, NC" or "27587")</small>
+              <%= f.text_field :zip, class: 'form-control border-input' %>
+            </div>
 
-          <div class="form-group <%= "has-error".html_safe unless @user.errors[:phone].blank? %>">
-            <%= f.label :phone %>
-            <%= f.text_field :phone, class: 'form-control border-input' %>
-          </div>
+            <div class="form-group <%= "has-error".html_safe unless @user.errors[:phone].blank? %>">
+              <%= f.label :phone %>
+              <%= f.text_field :phone, class: 'form-control border-input' %>
+            </div>
 
-          <div class="form-group <%= "has-error".html_safe unless @user.errors[:dob].blank? %>">
-            <%= f.label "Date of birth" %>
-            <small>(For filtering out age-restricted chances)</small>
-            <br/>
-            <%= f.date_select :dob,
-                              {order: [:month, :day, :year],
-                               start_year: Date.today.year - 70} %>
-          </div>
+            <div class="form-group <%= "has-error".html_safe unless @user.errors[:dob].blank? %>">
+              <%= f.label "Date of birth" %>
+              <small>(For filtering out age-restricted chances)</small>
+              <br/>
+              <%= f.date_select :dob,
+                                {order: [:month, :day, :year],
+                                 start_year: Date.today.year - 70} %>
+            </div>
 
 
-          <label>Notifications</label>
-          <ul class="notifications">
-            <li class="notification-item">
-              <div class="row">
-                <div class="col-xs-9">
-                  Daily email of upcoming openings
+            <label>Notifications</label>
+            <ul class="notifications">
+              <li class="notification-item">
+                <div class="row">
+                  <div class="col-xs-9">
+                    Daily email of upcoming openings
+                  </div>
+                  <div class="col-xs-3">
+                    <input type="checkbox" <%= "checked".html_safe if @user.receive_basic_notifications? %> data-toggle="switch" class="ct-info" name="user[receive_basic_notifications]" id="user_receive_basic_notifications"/>
+                  </div>
                 </div>
-                <div class="col-xs-3">
-                  <input type="checkbox" <%= "checked".html_safe if @user.receive_basic_notifications? %> data-toggle="switch" class="ct-info" name="user[receive_basic_notifications]" id="user_receive_basic_notifications" />
+              </li>
+              <li class="notification-item">
+                <div class="row">
+                  <div class="col-xs-9">
+                    Text messages for urgent openings
+                  </div>
+                  <div class="col-xs-3">
+                    <input type="checkbox" <%= "checked".html_safe if @user.receive_urgent_notifications? %> data-toggle="switch" class="ct-info" name="user[receive_urgent_notifications]" id="user_receive_urgent_notifications"/>
+                  </div>
                 </div>
-              </div>
-            </li>
-            <li class="notification-item">
-              <div class="row">
-                <div class="col-xs-9">
-                  Text messages for urgent openings
-                </div>
-                <div class="col-xs-3">
-                  <input type="checkbox" <%= "checked".html_safe if @user.receive_urgent_notifications? %> data-toggle="switch" class="ct-info" name="user[receive_urgent_notifications]" id="user_receive_urgent_notifications" />
-                </div>
-              </div>
-            </li>
-          </ul>
+              </li>
+            </ul>
 
-          <label>Activities</label>
-          <ul class="notifications">
-            <li class="notification-item">
-              <% Activity.all.each do |activity| %>
+            <label>Activities</label>
+            <ul class="notifications">
+              <li class="notification-item">
+                <% Activity.all.each do |activity| %>
 
                     <label class="checkbox checkbox-azure" for="checkbox<%= activity.id %>">
 
@@ -113,20 +113,21 @@
 
                     </label>
 
-              <% end %>
-            </li>
-          </ul>
+                <% end %>
+              </li>
+            </ul>
 
 
-          <%= f.submit "Save", class: "btn btn-success" %>
+            <%= f.submit "Save", class: "btn btn-success" %>
 
-          <p>&nbsp;</p>
-          <p>&nbsp;</p>
-      <% end %>
+            <p>&nbsp;</p>
 
+            <p>&nbsp;</p>
+        <% end %>
+
+      </div>
     </div>
   </div>
-    </div>
 </div>
 </div>
 </div>

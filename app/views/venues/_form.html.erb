@@ -1,43 +1,42 @@
-<%= form_for(@venue) do |f| %>
-    <% if @venue.errors.any? %>
-        <div id="error_explanation">
-          <div class="alert alert-danger">
-            The form contains <%= pluralize(@venue.errors.count, "error") %>.
-          </div>
-          <ul>
-            <% @venue.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-            <% end %>
-          </ul>
-        </div>
-    <% end %>
+<%= form_for @venue, :html => {:class => ''} do |f| %>
 
-    <%= f.label :name %><br>
-    <%= f.text_field :name, class: 'form-control', autofocus: 'autofocus' %>
+    <div class="form-group <%= "has-error".html_safe unless @venue.errors[:name].blank? %>">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control border-input' %>
+    </div>
 
-    <%= f.label :address1 %><br>
-    <%= f.text_field :address1, class: 'form-control' %>
-    <%= f.text_field :address2, class: 'form-control' %>
+    <div class="form-group <%= "has-error".html_safe unless @venue.errors[:address1].blank? %>">
+      <%= f.label :address1 %>
+      <%= f.text_field :address1, class: 'form-control border-input' %>
+      <%= f.text_field :address2, class: 'form-control border-input' %>
+    </div>
 
-    <%= f.label :city %><br>
-    <%= f.text_field :city, class: 'form-control' %>
+    <div class="form-group <%= "has-error".html_safe unless @venue.errors[:city].blank? %>">
+      <%= f.label :city %>
+      <%= f.text_field :city, class: 'form-control border-input' %>
+    </div>
 
-    <%= f.label :state %><br>
-    <%= f.text_field :state, class: 'form-control' %>
+    <div class="form-group <%= "has-error".html_safe unless @venue.errors[:state].blank? %>">
+      <%= f.label :state %>
+      <%= f.text_field :state, class: 'form-control border-input' %>
+    </div>
 
-    <%= f.label :zip %><br>
-    <%= f.text_field :zip, class: 'form-control' %>
+    <div class="form-group <%= "has-error".html_safe unless @venue.errors[:zip].blank? %>">
+      <%= f.label :zip %>
+      <%= f.text_field :zip, class: 'form-control border-input' %>
+    </div>
 
-    <%= f.label :phone %><br>
-    <%= f.text_field :phone, class: 'form-control' %>
+    <div class="form-group <%= "has-error".html_safe unless @venue.errors[:phone].blank? %>">
+      <%= f.label :phone %>
+      <%= f.text_field :phone, class: 'form-control border-input' %>
+    </div>
 
-    <%= f.label :latitude, style: 'display:none' %><br>
-    <%= f.text_field :latitude, class: 'form-control', readonly: 'readonly', style: 'display:none' %>
+    <%= f.hidden_field :latitude %>
+    <%= f.hidden_field :longitude %>
 
-    <%= f.label :longitude, style: 'display:none' %><br>
-    <%= f.text_field :longitude, class: 'form-control', readonly: 'readonly', style: 'display:none' %>
+    <%= f.submit "Save", class: "btn btn-success" %>
 
-    <%= f.submit "Save", class: "btn btn-primary" %>
+    <p>&nbsp;</p>
 
+    <p>&nbsp;</p>
 <% end %>
-
