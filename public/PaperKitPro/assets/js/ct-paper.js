@@ -57,7 +57,7 @@ $(document).ready(function(){
 
     if($('.datepicker').length != 0){
         $('.datepicker').datepicker({
-             weekStart:1,
+             weekStart:0,
              color: '{color}'
          });
     }

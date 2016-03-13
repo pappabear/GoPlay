@@ -39,22 +39,22 @@
 
     <div class="form-group <%= "has-error".html_safe unless @event.errors[:price].blank? %>">
       <%= f.label :price %>
-      <%= f.text_field :price, class: 'form-control border-input' %>
+      <%= f.text_field :price, class: 'form-control border-input', placeholder: 'for example, $10' %>
     </div>
 
     <div class="form-group <%= "has-error".html_safe unless @event.errors[:restrictions].blank? %>">
       <%= f.label :restrictions %>
-      <%= f.text_field :restrictions, class: 'form-control border-input' %>
+      <%= f.text_field :restrictions, class: 'form-control border-input', placeholder: 'for example, "age > 18", or "girls only"' %>
     </div>
 
     <div class="form-group <%= "has-error".html_safe unless @event.errors[:start_date].blank? %>">
       <%= f.label 'Start Date *' %>
-      <%= f.text_field :start_date, class: 'form-control border-input' %>
+      <%= f.text_field :start_date, class: 'datepicker form-control border-input' %>
     </div>
 
     <div class="form-group <%= "has-error".html_safe unless @event.errors[:start_time].blank? %>">
       <%= f.label 'Start Time *' %>
-      <%= f.text_field :start_time, class: 'form-control border-input' %>
+      <%= f.text_field :start_time, class: 'form-control border-input', placeholder: 'for example, 8pm' %>
     </div>
 
     <%= f.submit "Save", class: "btn btn-success" %>

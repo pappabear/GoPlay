@@ -169,7 +169,7 @@ puts '   ...an old OLD event, should not be returned in search results...'
 Event.create!(:activity_id => Activity.last.id,
               :venue_id => Venue.last.id,
               :title => 'Dummy!!',
-              :start_date => Date.today.advance(:days => -1), #Date.tomorrow.strftime("%m/%d/%Y"),
+              :start_date => Date.today.advance(:days => -1).strftime("%m/%d/%Y"),
               :start_time => '8:00 pm',
               :subtitle => Faker::Lorem.sentence,
               :description => Faker::Lorem.paragraph,
@@ -185,7 +185,7 @@ Event.create!(:activity_id => Activity.first.id,
               :event_type_id => EventType.where('name=?', 'Player Sub').first.id,
               :venue_id => Venue.first.id,
               :title => 'Skate at the Factory',
-              :start_date => Date.tomorrow,
+              :start_date => Date.tomorrow.strftime("%m/%d/%Y"),
               :start_time => '8:00 pm',
               :subtitle => Faker::Lorem.sentence,
               :description => Faker::Lorem.paragraph,
@@ -200,10 +200,10 @@ puts '   ...one at Mennen'
 Event.create!(:activity_id => Activity.first.id,
               :event_type_id => EventType.where('name=?', 'Goalie Sub').first.id,
               :venue_id => Venue.where('name=?', 'Mennen Arena').first.id,
-              :title => 'Skate at Mennen',
-              :start_date => Date.tomorrow,
+              :title => 'Pickup',
+              :start_date => Date.tomorrow.strftime("%m/%d/%Y"),
               :start_time => '8:00 pm',
-              :subtitle => Faker::Lorem.sentence,
+              :subtitle => 'League game sub',
               :description => Faker::Lorem.paragraph,
               :details => Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph,
               :price => '$10',
@@ -216,9 +216,9 @@ puts '   ...and a Vonhoosits.'
 Event.create!(:activity_id => Activity.first.id,
               :venue_id => Venue.first.id,
               :title => 'Vonhoosits',
-              :start_date => Date.tomorrow,
+              :start_date => Date.tomorrow.strftime("%m/%d/%Y"),
               :start_time => '8:00 pm',
-              :subtitle => Faker::Lorem.sentence,
+              :subtitle => 'Invtation-only pickup',
               :description => Faker::Lorem.paragraph,
               :details => Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph,
               :price => '$10',
@@ -226,23 +226,5 @@ Event.create!(:activity_id => Activity.first.id,
               :info_url => Faker::Internet.url,
               :registration_url => Faker::Internet.url)
 
-# k = Venue.first.id
-# 9.times do |i|
-#   30.times do |n|
-#     Event.create!(:activity_id => Activity.first.id,
-#                   :venue_id => k,
-#                   :title => "Dummy example-#{n+1} event",
-#                   :start_date => Date.tomorrow,
-#                   :start_time => '8:00 pm',
-#                   :subtitle => Faker::Lorem.sentence,
-#                   :description => Faker::Lorem.paragraph,
-#                   :details => Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph,
-#                   :price => '$10',
-#                   :restrictions => Faker::Lorem.paragraph,
-#                   :info_url => Faker::Internet.url,
-#                   :registration_url => Faker::Internet.url)
-#   end
-#   k += 1
-# end
 
 puts 'Done.'

@@ -1,22 +1,49 @@
-<h1>Events</h1>
+<% provide(:title, 'All Events') %>
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
 
-    <h4 style="padding-bottom:2em;"><%= @events.count %> matches found.</h4>
 
-    <%= will_paginate %>
+<div class="container">
+  <h3 class="title">Events</h3>
 
-    <%= render partial: "cards", locals: {events: @events} %>
+  <%= will_paginate %>
 
-    <%= will_paginate %>
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th class="text-right">Actions</th>
+      </tr>
+      </thead>
 
-    <br />
-    <%= link_to 'Setup a New Event', new_event_path, class: "btn btn-lg btn-primary" %>
+      <tbody>
 
+      <% @events.each do |event| %>
+          <tr>
+            <td><strong><%= event.title %> @ <%= event.venue.name %> on <%= event.start_date.strftime("%m/%d/%Y") %></strong>
+              <br />
+              <%= event.activity.name %>
+              <%= " / " + event.event_type.name unless event.event_type.nil? %>
+              &nbsp;/&nbsp;<%= event.subtitle %>
+              <br />
+              Cost: <%= event.price %>
+              Restrictions: <%= event.restrictions %>
+              <br />
+              <i class="small">Added <%= time_ago_in_words event.created_at %> ago on <%= event.created_at.strftime("%m/%d/%Y") %> at <%= event.created_at.strftime("%l:%M%P") %> ET</i>
+            </td>
+            <td class="td-actions text-right">
+              <% if current_user.admin? %>
+                  <%= link_to "delete", event, method: :delete, data: {confirm: "You sure?"}, class: 'pull-right' %>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+      <% end %>
+
+      </tbody>
+    </table>
   </div>
+
+  <%= will_paginate %>
+
 </div>
-
-
-
-

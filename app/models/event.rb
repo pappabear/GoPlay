@@ -6,8 +6,8 @@ class Event < ActiveRecord::Base
   validates_presence_of :start_date
   validates_presence_of :start_time
 
-
-  after_validation :geocode_the_address, :on => [:create, :update]
+  before_validation :convert_date, :on => [:create, :update]
+  before_validation :ensure_geo_coords, :on => [:create, :update]
 
 
   belongs_to :venue
@@ -23,12 +23,20 @@ class Event < ActiveRecord::Base
 
 
 
-  def geocode_the_address
+  private
 
-    # grab the lat/lng from the venue
-    self.latitude = self.venue.latitude
-    self.longitude = self.venue.longitude
 
+  def ensure_geo_coords
+    v = Venue.find(self.venue)
+    self.latitude = v.latitude
+    self.longitude = v.longitude
+  end
+
+
+  def convert_date
+    buffer = self.start_date_before_type_cast
+    parts = buffer.split('/')
+    self.start_date = parts[2] + '-' + parts[0] + '-' + parts[1]
   end
 
 

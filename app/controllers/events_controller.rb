@@ -10,7 +10,7 @@ class EventsController < ApplicationController
     # find events within the search radius, and filter on the chosen criteria
     @events = Event.within(params[:radius].to_i, :origin => [ address.latitude , address.longitude ])
                   .where('activity_id=?', params['activity_id'])
-                  .where('start_date > ?', DateTime.now)
+                  .where('start_date >= ?', DateTime.now)
                   .order('start_date')
                   .paginate(page: params[:page])
   end
@@ -45,15 +45,11 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
 
-    #puts 'start-date before cast = ' + @event.start_date_before_type_cast.to_s
-    #puts 'adjusted date = ' + fix_date_format(@event.start_date_before_type_cast.to_s)
-    #@event.start_date = fix_date_format(@event.start_date_before_type_cast.to_s)
-
     respond_to do |format|
       if @event.save
         format.html {
           flash[:success] = "Event was successfully created."
-          redirect_to events_path
+          redirect_to root_path
         }
         format.json { render :show, status: :created, location: @event }
       else
@@ -69,7 +65,7 @@ class EventsController < ApplicationController
       if @event.update(event_params)
         format.html {
           flash[:success] = "Event was successfully updated."
-          redirect_to events_path
+          redirect_to root_path
         }
         format.json { render :show, status: :ok, location: @event }
       else
