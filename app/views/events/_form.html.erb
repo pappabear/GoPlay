@@ -68,10 +68,10 @@
     $().ready(function(){
         $('#event_activity_id').on("change", function () {
             var n = $('#event_activity_id').val();
-            console.log('New activity is now ==> ' + n);
+            //console.log('New activity is now ==> ' + n);
             $.get("/activities/" + n + "/get_event_types.js")
                     .done(function (data) {
-                        console.log("Event-type data loaded from API: " + data);
+                        //console.log("Event-type data loaded from API: " + data);
                     });
         });
     });

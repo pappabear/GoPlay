@@ -1,0 +1,6 @@
+//console.log('Entering get_event_types');
+
+$("#event_event_type_id")
+        .empty()
+        .append("<option value=''> </option>")
+        .append("<%= escape_javascript(render(:partial => @event_types)) %>");

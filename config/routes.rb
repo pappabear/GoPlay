@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   resources :activities do
+    get 'get_event_types' => 'events#get_event_types'
     resources :event_types
   end
   resources :venues

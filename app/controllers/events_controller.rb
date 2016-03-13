@@ -16,6 +16,14 @@ class EventsController < ApplicationController
   end
 
 
+  def get_event_types
+    @event_types = EventType.where("activity_id = ?", params[:activity_id])
+    respond_to do |format|
+      format.js
+    end
+  end
+
+
   def index
     @events = Event.paginate(page: params[:page])
   end
