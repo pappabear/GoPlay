@@ -27,7 +27,7 @@ class Event < ActiveRecord::Base
 
 
   def ensure_geo_coords
-    v = Venue.find(self.venue)
+    v = Venue.find(self.venue.id)
     self.latitude = v.latitude
     self.longitude = v.longitude
   end

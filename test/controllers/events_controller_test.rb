@@ -74,18 +74,18 @@ class EventsControllerTest < ActionController::TestCase
 
   test "should update event" do
     log_in_as(@user)
-    patch :update, id: @event, event: { title: @event.title + '-e', venue_id: @venue, activity_id: @activity, start_date: Date.today, start_time: '20:00' }
-    assert_redirected_to events_path
+    patch :update, id: @event, event: { title: @event.title + '-e', venue_id: @venue, activity_id: @activity, start_date: Date.today.strftime("%m/%d/%Y"), start_time: '20:00' }
+    assert_redirected_to root_path
   end
 
 
   test "should create new event" do
     log_in_as(@user)
     assert_difference('Event.count') do
-      post :create, event: { title: @event.title + '-new', venue_id: @venue, activity_id: @activity, start_date: Date.today, start_time: '20:00' }
+      post :create, event: { title: @event.title + '-new', venue_id: @venue, activity_id: @activity, start_date: Date.today.strftime("%m/%d/%Y"), start_time: '20:00' }
     end
 
-    assert_redirected_to events_path #activity_path(assigns(:activity))
+    assert_redirected_to root_path #activity_path(assigns(:activity))
   end
 
 
