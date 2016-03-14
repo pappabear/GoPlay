@@ -1,22 +1,17 @@
-<h1>Events</h1>
+<% provide(:title, 'Search Results') %>
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
 
-    <h4 style="padding-bottom:2em;"><%= @events.count %> matches found.</h4>
 
-    <%= will_paginate %>
+<div class="container">
+  <h3 class="title"><%= @events.count.to_s %> matching events found</h3>
 
-    <%= render partial: "cards", locals: {events: @events} %>
+  <span class="label label-info"><%= Activity.find(params['activity_id']).name %></span>
+  <span class="label label-info">within <%= params[:radius] %> miles </span>
+  <span class="label label-info">of <%= params[:user_geo] %></span>
 
-    <%= will_paginate %>
+  <div>&nbsp;</div>
 
-    <br />
-    <%= link_to 'Setup a New Event', new_event_path, class: "btn btn-lg btn-primary" %>
+  <%= render partial: "cards", locals: {events: @events} %>
 
-  </div>
+
 </div>
-
-
-
-

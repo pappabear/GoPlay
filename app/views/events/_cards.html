@@ -1,20 +1,23 @@
 <% events.each do |event| %>
 
-<ul class="users">
-    <li>
-        <strong><a href="#"><%= event.title %></a> at <%= event.venue.name %></strong>
-        <br />
-        <%= event.activity.name %><%= " / " + event.event_type.name unless event.event_type.nil? %>
-        on <%= event.start_date.strftime("%m/%d/%Y") %>
-        at <%= event.start_time %>
-        <br />
-        Cost: <%= event.price %>
-        Restrictions: <%= event.restrictions %>
-        <br />
-        <i class="small">Added <%= event.created_at %></i>
-
-    </li>
-</ul>
-
+<div class="col-md-4 col-sm-6">
+    <div class="card-big-shadow">
+        <div class="card" data-radius="none">
+            <div class="content">
+                <h6 class="category"><%= event.activity.name %><%= " / " + event.event_type.name unless event.event_type.nil? %></h6>
+                <h4 class="title"><%= event.title %></h4>
+                <p class="description">
+                    <%= event.start_date.strftime("%m/%d/%Y") %> @ <%= event.start_time %>
+                    <br />
+                    <%= event.subtitle %>
+                    <br />
+                    Cost: <%= event.price %>
+                    Restrictions: <%= event.restrictions %>
+                </p>
+                <i class="small" style="color:silver;">Added <%= time_ago_in_words event.created_at %> ago on <%= event.created_at.strftime("%m/%d/%Y") %> at <%= event.created_at.strftime("%l:%M%P") %> ET</i>
+            </div>
+        </div> <!-- end card -->
+    </div>
+</div>
 
 <% end %>
