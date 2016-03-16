@@ -9,10 +9,10 @@
                 <p class="description">
                     <%= event.start_date.strftime("%m/%d/%Y") %> @ <%= event.start_time %>
                     <br />
-                    <%= event.subtitle %>
+                    <%= event.venue.name %>
                     <br />
                     Cost: <%= event.price %>
-                    Restrictions: <%= event.restrictions %>
+                    Restrictions: <i>This is a fake event!</i>
                 </p>
                 <i class="small" style="color:silver;">Added <%= time_ago_in_words event.created_at %> ago on <%= event.created_at.strftime("%m/%d/%Y") %> at <%= event.created_at.strftime("%l:%M%P") %> ET</i>
             </div>
