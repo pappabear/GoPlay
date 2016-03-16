@@ -26,7 +26,7 @@ class UserMailer < ApplicationMailer
 
   def daily_notifications
     puts 'Initiating the daily_notifications job...'
-    subscribers = User.where('basic_notifications_frequency=?', 'daily').where('latitude is not null and longitude is not null')
+    subscribers = User.where('receive_basic_notifications=true').where('latitude is not null and longitude is not null')
     puts subscribers.count.to_s + ' subscriber(s) found.'
 
     subscribers.each do |sub|
