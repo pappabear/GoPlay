@@ -37,7 +37,7 @@ class UserMailer < ApplicationMailer
                                   .where('start_date < ?', Date.today.advance(:days=>7))
                                   .order('start_date')
       puts '    For ' + sub.email + ' there were ' + @events.count.to_s + ' event(s) found.'
-      mail to: sub.email, subject: "Your GoPlay daily update"
+      mail to: sub.email, subject: "Your " + APP_NAME + " daily update"
 
     end
 
@@ -58,7 +58,7 @@ class UserMailer < ApplicationMailer
                     .where('start_date < ?', Date.today.advance(:days=>14))
                     .order('start_date')
       puts '    For ' + sub.email + ' there were ' + @events.count.to_s + ' event(s) found.'
-      mail to: sub.email, subject: "Your GoPlay weekly update"
+      mail to: sub.email, subject: "Your " + APP_NAME + " weekly update"
 
     end
 
