@@ -23,9 +23,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav navbar-right">
-        <% if logged_in? %>
-            <li><%= link_to "Announce an opening!", new_event_path, class: "btn btn-danger btn-fill" %></li>
-        <% end %>
+        <li><%= link_to "Announce an opening!", new_event_path, class: "btn btn-danger btn-fill" %></li>
         <% if is_admin? %>
             <li class="dropdown">
               <button href="#" class="dropdown-toggle btn btn-warning" data-toggle="dropdown">Admin <b class="caret"></b></button>

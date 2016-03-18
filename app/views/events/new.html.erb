@@ -25,7 +25,11 @@
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
 
-      <%= render 'form' %>
+      <% if logged_in? %>
+        <%= render 'form' %>
+      <% else %>
+        You must be a registered user to post announcements to the network.  It's free and easy to join!  C'mon, <a href='/signup'>join</a> us!
+      <% end %>
 
     </div>
   </div>

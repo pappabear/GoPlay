@@ -113,7 +113,7 @@ class EventsController < ApplicationController
   def logged_in_user
     unless logged_in?
       store_location
-      flash[:danger] = "Please log in."
+      flash[:danger] = "You have to be a registered user to do that. It's easy to <a href='/signup' style='color:black;'>join</a>!"
       redirect_to login_url
     end
   end
