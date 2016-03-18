@@ -39,6 +39,7 @@ class EventsController < ApplicationController
 
 
   def edit
+    @event.start_date = @event.start_date.strftime("%m/%d/%Y")
   end
 
 

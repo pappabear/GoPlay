@@ -7,12 +7,14 @@
                 <h6 class="category"><%= event.activity.name %><%= " / " + event.event_type.name unless event.event_type.nil? %></h6>
                 <h4 class="title"><%= event.title %></h4>
                 <p class="description">
-                    <%= event.start_date.strftime("%m/%d/%Y") %> @ <%= event.start_time %>
+                    <%= event.subtitle if !event.subtitle.nil? %>
+                    <br /><%= event.start_date.strftime("%m/%d/%Y") %> @ <%= event.start_time %>
                     <br />
                     <%= event.venue.name %>
                     <br />
-                    Cost: <%= event.price %>
-                    Restrictions: <i>This is a fake event!</i>
+                    <%= " Cost:".html_safe + event.price if !event.price.nil? %>
+                    <%= " Restrictions:".html_safe + event.restrictions if !event.restrictions.nil? %>
+                    <i>This is a fake event!</i>
                 </p>
                 <i class="small" style="color:silver;">Added <%= time_ago_in_words event.created_at %> ago on <%= event.created_at.strftime("%m/%d/%Y") %> at <%= event.created_at.strftime("%l:%M%P") %> ET</i>
             </div>

@@ -21,18 +21,18 @@
       <% @events.each do |event| %>
           <tr>
             <td><strong><%= event.title %> @ <%= event.venue.name %> on <%= event.start_date.strftime("%m/%d/%Y") %></strong>
-              <br />
-              <%= event.activity.name %>
+              <br /><%= event.activity.name %>
               <%= " / " + event.event_type.name unless event.event_type.nil? %>
-              &nbsp;/&nbsp;<%= event.subtitle %>
+              <br /><%= event.subtitle %>
               <br />
-              Cost: <%= event.price %>
-              Restrictions: <%= event.restrictions %>
+              Cost: <%= event.price %>.
+              Restrictions: <%= event.restrictions %>.
               <br />
               <i class="small">Added <%= time_ago_in_words event.created_at %> ago on <%= event.created_at.strftime("%m/%d/%Y") %> at <%= event.created_at.strftime("%l:%M%P") %> ET</i>
             </td>
             <td class="td-actions text-right">
               <% if current_user.admin? %>
+                  <%= link_to "edit", edit_event_path(event), class: 'pull-right' %>
                   <%= link_to "delete", event, method: :delete, data: {confirm: "You sure?"}, class: 'pull-right' %>
               <% end %>
             </td>
