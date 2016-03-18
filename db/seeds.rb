@@ -165,66 +165,68 @@ v12 = Venue.create!(:name => 'Blades of Glory',
 puts '...venues created.  Make sure the geocoding worked!!. Verify that latitudes and longitudes are filled in.'
 
 puts 'Creating events...'
-puts '   ...an old OLD event, should not be returned in search results...'
-Event.create!(:activity_id => Activity.last.id,
-              :venue_id => Venue.last.id,
-              :title => 'Dummy!!',
-              :start_date => Date.today.advance(:days => -1).strftime("%m/%d/%Y"),
-              :start_time => '8:00 pm',
-              :subtitle => Faker::Lorem.sentence,
-              :description => Faker::Lorem.paragraph,
-              :details => Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph,
-              :price => '$10',
-              :restrictions => Faker::Lorem.paragraph,
-              :info_url => Faker::Internet.url,
-              :registration_url => Faker::Internet.url)
-
-
-puts '   ...one at The Factory...'
 Event.create!(:activity_id => Activity.first.id,
               :event_type_id => EventType.where('name=?', 'Player Sub').first.id,
               :venue_id => Venue.first.id,
-              :title => 'Skate at the Factory',
+              :title => 'B/C league game with The Whiners',
+              :subtitle => "I need a D for tonight's game",
               :start_date => Date.tomorrow.strftime("%m/%d/%Y"),
-              :start_time => '8:00 pm',
-              :subtitle => Faker::Lorem.sentence,
-              :description => Faker::Lorem.paragraph,
-              :details => Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph,
-              :price => '$10',
-              :restrictions => Faker::Lorem.paragraph,
-              :info_url => Faker::Internet.url,
-              :registration_url => Faker::Internet.url)
+              :start_time => '10:15 pm',
+              :created_by => User.last.name,
+              :price => '$10')
+#:subtitle => Faker::Lorem.sentence,
+#:description => Faker::Lorem.paragraph,
+#:details => Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph,
+#:restrictions => Faker::Lorem.paragraph,
+#:info_url => Faker::Internet.url,
+#:registration_url => Faker::Internet.url
 
-
-puts '   ...one at Mennen'
 Event.create!(:activity_id => Activity.first.id,
               :event_type_id => EventType.where('name=?', 'Goalie Sub').first.id,
               :venue_id => Venue.where('name=?', 'Mennen Arena').first.id,
-              :title => 'Pickup',
-              :start_date => Date.tomorrow.strftime("%m/%d/%Y"),
-              :start_time => '8:00 pm',
-              :subtitle => 'League game sub',
-              :description => Faker::Lorem.paragraph,
-              :details => Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph,
-              :price => '$10',
-              :restrictions => Faker::Lorem.paragraph,
-              :info_url => Faker::Internet.url,
-              :registration_url => Faker::Internet.url)
+              :title => 'A-league - goalie needed tonight!',
+              :subtitle => 'Text me @ 321-215-5568',
+              :start_date => Date.today.strftime("%m/%d/%Y"),
+              :start_time => '11:00 pm',
+              :created_by => User.last.name,
+              :price => '$10')
+#:subtitle => Faker::Lorem.sentence,
+#:description => Faker::Lorem.paragraph,
+#:details => Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph,
+#:restrictions => Faker::Lorem.paragraph,
+#:info_url => Faker::Internet.url,
+#:registration_url => Faker::Internet.url
 
-
-puts '   ...and a Vonhoosits.'
 Event.create!(:activity_id => Activity.first.id,
               :venue_id => Venue.first.id,
               :title => 'Vonhoosits',
+              :subtitle => 'Text me @ 321-215-5568',
               :start_date => Date.tomorrow.strftime("%m/%d/%Y"),
               :start_time => '8:00 pm',
-              :subtitle => 'Invtation-only pickup',
-              :description => Faker::Lorem.paragraph,
-              :details => Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph,
-              :price => '$10',
-              :restrictions => Faker::Lorem.paragraph,
-              :info_url => Faker::Internet.url,
-              :registration_url => Faker::Internet.url)
+              :created_by => User.last.name,
+              :price => '$10')
+#:subtitle => Faker::Lorem.sentence,
+#:description => Faker::Lorem.paragraph,
+#:details => Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph,
+#:restrictions => Faker::Lorem.paragraph,
+#:info_url => Faker::Internet.url,
+#:registration_url => Faker::Internet.url
+
+Event.create!(:activity_id => Activity.first.id,
+              :venue_id => Venue.first.id,
+              :title => 'Stick and Puck',
+              :start_date => Date.tomorrow.strftime("%m/%d/%Y"),
+              :start_time => '11:00 am',
+              :created_by => User.last.name,
+              :price => '$10')
+
+Event.create!(:activity_id => Activity.first.id,
+              :venue_id => Venue.first.id,
+              :title => 'Stick and Puck',
+              :start_date => Date.tomorrow.strftime("%m/%d/%Y"),
+              :start_time => '4:30 pm',
+              :created_by => User.last.name,
+              :price => '$10')
 
 
 puts 'Done.'

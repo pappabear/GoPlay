@@ -16,7 +16,7 @@
                     <%= " Restrictions:".html_safe + event.restrictions if !event.restrictions.nil? %>
                     <i>This is a fake event!</i>
                 </p>
-                <i class="small" style="color:silver;">Added <%= time_ago_in_words event.created_at %> ago on <%= event.created_at.strftime("%m/%d/%Y") %> at <%= event.created_at.strftime("%l:%M%P") %> ET</i>
+                <i class="small" style="color:silver;">Added <%= time_ago_in_words event.created_at %> ago on <%= event.created_at.strftime("%m/%d/%Y") %> at <%= event.created_at.strftime("%l:%M%P") %> ET by <%= event.created_by %></i>
             </div>
         </div> <!-- end card -->
     </div>

@@ -28,7 +28,7 @@
               Cost: <%= event.price %>.
               Restrictions: <%= event.restrictions %>.
               <br />
-              <i class="small">Added <%= time_ago_in_words event.created_at %> ago on <%= event.created_at.strftime("%m/%d/%Y") %> at <%= event.created_at.strftime("%l:%M%P") %> ET</i>
+              <i class="small">Added <%= time_ago_in_words event.created_at %> ago on <%= event.created_at.strftime("%m/%d/%Y") %> at <%= event.created_at.strftime("%l:%M%P") %> ET by <%= event.created_by %></i>
             </td>
             <td class="td-actions text-right">
               <% if current_user.admin? %>
