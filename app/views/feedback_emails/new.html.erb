@@ -1,0 +1,76 @@
+<div class="row">
+
+  <% if @feedback_email.errors.any? %>
+      <div id="error_explanation">
+        <div class="alert alert-danger">
+          The form contains <%= pluralize(@feedback_email.errors.count, "error") %>.
+        </div>
+        <ul>
+          <% @feedback_email.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+  <% end %>
+
+  <div class="col-md-8 col-md-offset-2 text-center">
+    <h2 class="title">Get in touch with us</h2>
+    <p>Let us know any feedback, if you have a problem, or if you want to suggest an improvement.</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3 text-center">
+    <h3><small>Find us on social networks</small></h3>
+    <button class="btn btn-icon btn-fill btn-twitter">
+      <i class="fa fa-twitter"></i>
+    </button>
+    <button class="btn btn-icon btn-fill btn-facebook">
+      <i class="fa fa-facebook"> </i>
+    </button>
+    <button class="btn btn-icon btn-fill btn-google">
+      <i class="fa fa-google"> </i>
+    </button>
+    </button>
+    <button class="btn btn-icon btn-fill btn-dribbble">
+      <i class="fa fa-dribbble"> </i>
+    </button>
+
+    <button class="btn btn-icon btn-fill btn-instagram">
+      <i class="fa fa-instagram"></i>
+    </button>
+    <button class="btn btn-icon btn-fill btn-youtube">
+      <i class="fa fa-youtube"></i>
+    </button>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <h3 class="text-center"><small>Or drop us a note...</small></h3>
+
+    <%= form_for @feedback_email, :html => {:class => 'contact'} do |f| %>
+
+        <div class="form-group <%= "has-error".html_safe unless @feedback_email.errors[:name].blank? %>">
+          <%= f.label :name %>
+          <%= f.text_field :name, class: 'form-control border-input', placeholder: 'Your name' %>
+        </div>
+
+        <div class="form-group <%= "has-error".html_safe unless @feedback_email.errors[:email].blank? %>">
+          <%= f.label :email %>
+          <%= f.text_field :email, class: 'form-control border-input', placeholder: 'Your email address' %>
+        </div>
+
+        <div class="form-group <%= "has-error".html_safe unless @feedback_email.errors[:message].blank? %>">
+          <%= f.label :message %>
+          <%= f.text_area :message, class: 'form-control border-input', placeholder: 'Your message' %>
+        </div>
+
+        <%= f.submit "Send", class: "btn btn-fill btn-block btn-success" %>
+
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+
+    <% end %>
+
+  </div>
+</div>
+

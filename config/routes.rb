@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  resources :feedback_emails
+  get 'contact' => 'feedback_emails#new'
+  post 'feedback_emails/create'
+
   resources :activities do
     get 'get_event_types' => 'events#get_event_types'
     resources :event_types
@@ -16,7 +20,7 @@ Rails.application.routes.draw do
   root                'static_pages#home'
   get     'help'    => 'static_pages#help'
   get     'about'   => 'static_pages#about'
-  get     'contact' => 'static_pages#contact'
+  #get     'contact' => 'static_pages#contact'
   get     'terms' => 'static_pages#terms'
   get     'privacy' => 'static_pages#privacy'
   get     'news'    => 'static_pages#news'
