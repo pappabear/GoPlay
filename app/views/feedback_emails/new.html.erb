@@ -1,17 +1,6 @@
 <div class="row">
 
-  <% if @feedback_email.errors.any? %>
-      <div id="error_explanation">
-        <div class="alert alert-danger">
-          The form contains <%= pluralize(@feedback_email.errors.count, "error") %>.
-        </div>
-        <ul>
-          <% @feedback_email.errors.full_messages.each do |msg| %>
-              <li><%= msg %></li>
-          <% end %>
-        </ul>
-      </div>
-  <% end %>
+  <%= render partial: "shared/error_messages", locals: {object: @feedback_email} %>
 
   <div class="col-md-8 col-md-offset-2 text-center">
     <h2 class="title">Get in touch with us</h2>

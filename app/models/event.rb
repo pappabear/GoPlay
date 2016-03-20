@@ -34,6 +34,11 @@ class Event < ActiveRecord::Base
 
 
   def convert_date
+    if self.start_date_before_type_cast == ""
+      #errors.add(:start_date, "cannot be blank.")
+      return
+    end
+
     buffer = self.start_date_before_type_cast
     parts = buffer.split('/')
     self.start_date = parts[2] + '-' + parts[0] + '-' + parts[1]
