@@ -20,7 +20,7 @@ gem 'puma'
 gem 'geokit-rails'
 gem 'mechanize'
 
-gem 'jwt', '1.5.3'
+gem 'jwt', '1.5.4'  # Needed due to jwt 1.5.3 being *yanked* from rubygems.com.  Nice.
 gem 'twilio-ruby'
 
 
