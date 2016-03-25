@@ -20,6 +20,7 @@ gem 'puma'
 gem 'geokit-rails'
 gem 'mechanize'
 
+gem 'twilio-ruby'
 
 
 group :development, :test do

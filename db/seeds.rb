@@ -9,8 +9,7 @@ Event.destroy_all
 puts 'Creating users...'
 
 User.create(name: "Richard Tooke", email: "r2k@me.com", password: "lollip0p", password_confirmation: "lollip0p",
-            activated: true,
-            activated_at: Time.zone.now)
+            phone: "9196495383", activated: true, activated_at: Time.zone.now)
 
 User.create(name: "Chip Irek", email: "chip.irek@gmail.com", password: "lollip0p", password_confirmation: "lollip0p",
             activated: true,

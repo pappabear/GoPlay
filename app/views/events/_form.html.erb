@@ -27,6 +27,22 @@
       <%= f.text_field :subtitle, class: 'form-control border-input' %>
     </div>
 
+    <div class="form-group <%= "has-error".html_safe unless @event.errors[:is_urgent].blank? %>">
+      <%= f.label "Is this urgent?" %>
+      <%= f.label "It this urgent?", class: "checkbox" do %>
+
+          <% # if the current user doesn't have a phone number, don't allow his to send or receive texts %>
+          <% if current_user.phone.nil? || current_user.phone.length <= 0 %>
+              <%= f.check_box :is_urgent, {"data-toggle" => "checkbox", "disabled" => "disabled"}, true %>
+          <% else %>
+              <%= f.check_box :is_urgent, {"data-toggle" => "checkbox"}, true %>
+          <% end %>
+
+          <span>Send an urgent text message about this to my network!</span>
+
+      <% end %>
+    </div>
+
     <div class="form-group <%= "has-error".html_safe unless @event.errors[:price].blank? %>">
       <%= f.label :price %>
       <%= f.text_field :price, class: 'form-control border-input', placeholder: 'for example, $10' %>
@@ -55,7 +71,7 @@
 <% end %>
 
 <script language="JavaScript">
-    $().ready(function(){
+    $().ready(function () {
         $('#event_activity_id').on("change", function () {
             var n = $('#event_activity_id').val();
             //console.log('New activity is now ==> ' + n);

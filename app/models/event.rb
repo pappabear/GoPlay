@@ -9,18 +9,15 @@ class Event < ActiveRecord::Base
   before_validation :convert_date, :on => [:create, :update]
   before_validation :ensure_geo_coords, :on => [:create, :update]
 
-
   belongs_to :venue
   belongs_to :activity
   belongs_to :event_type
-
 
   acts_as_mappable :default_units => :miles,
                    :default_formula => :sphere,
                    :distance_field_name => :distance,
                    :lat_column_name => :latitude,
                    :lng_column_name => :longitude
-
 
 
   private

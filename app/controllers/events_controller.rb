@@ -45,9 +45,31 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
+    @event.created_by = current_user.name
 
     respond_to do |format|
       if @event.save
+
+        if @event.is_urgent?
+          client = Twilio::REST::Client.new(
+              ENV["TWILIO_ACCOUNT_SID"],
+              ENV["TWILIO_AUTH_TOKEN"]
+          )
+
+          subscribers = User.within(50, :origin => [@event.latitude, @event.longitude])
+                            .where('receive_urgent_notifications=true')
+                            .where('phone is not null')
+                            .where('id in (select user_id from activities_users where activity_id = ' + @event.activity_id.to_s + ')')
+
+          subscribers.each do |sub|
+            client.messages.create(
+                to: sub.phone,
+                from: ENV["TWILIO_PHONE_NUMBER"],
+                body: APP_NAME + " urgent notification -- " + @event.title + ". " + "Contact " + current_user.name + " at " + current_user.phone + "."
+            )
+          end
+        end
+
         format.html {
           flash[:success] = "Event was successfully created."
           redirect_to root_path
@@ -100,7 +122,7 @@ class EventsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def event_params
-    params.require(:event).permit(:activity_id, :event_type_id, :venue_id, :title, :subtitle, :description, :details, :price, :restrictions, :info_url, :registration_url, :start_date, :start_time, :recurrence, :latitude, :longitude)
+    params.require(:event).permit(:activity_id, :event_type_id, :venue_id, :title, :subtitle, :description, :details, :price, :restrictions, :info_url, :registration_url, :start_date, :start_time, :recurrence, :latitude, :longitude, :is_urgent)
   end
 
 
