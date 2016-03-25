@@ -20,6 +20,7 @@ gem 'puma'
 gem 'geokit-rails'
 gem 'mechanize'
 
+gem 'jwt', '1.5.3'
 gem 'twilio-ruby'
 
 
