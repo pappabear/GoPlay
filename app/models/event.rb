@@ -32,12 +32,16 @@ class Event < ActiveRecord::Base
 
   def convert_date
     if self.start_date_before_type_cast == ""
-      #errors.add(:start_date, "cannot be blank.")
+      # don't bother parsing, will generate error "cannot be blank."
       return
     end
 
-    buffer = self.start_date_before_type_cast
-    parts = buffer.split('/')
+    if self.start_date_before_type_cast.split('-').size == 3
+      # date is already in yyyy-mm-dd format
+      return
+    end
+
+    parts = self.start_date_before_type_cast.split('/')
     self.start_date = parts[2] + '-' + parts[0] + '-' + parts[1]
   end
 
