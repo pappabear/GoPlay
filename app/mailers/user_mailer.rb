@@ -33,9 +33,9 @@ class UserMailer < ApplicationMailer
 
 
   def daily_notifications
-    #puts 'Initiating the daily_notifications job...'
+    puts 'Initiating the daily_notifications job...'
     subscribers = User.where('receive_basic_notifications=true').where('latitude is not null and longitude is not null')
-    #puts subscribers.count.to_s + ' subscriber(s) found.'
+    puts subscribers.count.to_s + ' subscriber(s) found.'
 
     subscribers.each do |sub|
       activities = sub.activities
@@ -44,12 +44,12 @@ class UserMailer < ApplicationMailer
                                   .where('start_date > ?', DateTime.now)
                                   .where('start_date < ?', Date.today.advance(:days=>7))
                                   .order('start_date')
-      #puts '    For ' + sub.email + ' there were ' + @events.count.to_s + ' event(s) found.'
+      puts '    For ' + sub.email + ' there were ' + @events.count.to_s + ' event(s) found. Generating email...'
       mail to: sub.email, subject: "Your " + APP_NAME + " daily update"
 
     end
 
-    #puts '...completed sending daily_notifications.'
+    puts '...completed sending daily_notifications.'
   end
 
 
