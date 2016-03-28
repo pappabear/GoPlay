@@ -55,6 +55,4 @@ task :re_seed_events => :environment do
                 :created_by => User.last.name,
                 :price => '$10')
 
-  UserMailer.daily_notifications.deliver_now!
-
 end
