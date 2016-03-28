@@ -76,12 +76,6 @@ Event.create!(:activity_id => Activity.first.id,
               :start_time => '10:15 pm',
               :created_by => User.last.name,
               :price => '$10')
-#:subtitle => Faker::Lorem.sentence,
-#:description => Faker::Lorem.paragraph,
-#:details => Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph,
-#:restrictions => Faker::Lorem.paragraph,
-#:info_url => Faker::Internet.url,
-#:registration_url => Faker::Internet.url
 
 Event.create!(:activity_id => Activity.first.id,
               :event_type_id => EventType.where('name=?', 'Goalie Sub').first.id,
@@ -92,12 +86,6 @@ Event.create!(:activity_id => Activity.first.id,
               :start_time => '11:00 pm',
               :created_by => User.last.name,
               :price => '$10')
-#:subtitle => Faker::Lorem.sentence,
-#:description => Faker::Lorem.paragraph,
-#:details => Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph,
-#:restrictions => Faker::Lorem.paragraph,
-#:info_url => Faker::Internet.url,
-#:registration_url => Faker::Internet.url
 
 Event.create!(:activity_id => Activity.first.id,
               :venue_id => Venue.first.id,
@@ -107,12 +95,6 @@ Event.create!(:activity_id => Activity.first.id,
               :start_time => '8:00 pm',
               :created_by => User.last.name,
               :price => '$10')
-#:subtitle => Faker::Lorem.sentence,
-#:description => Faker::Lorem.paragraph,
-#:details => Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph,
-#:restrictions => Faker::Lorem.paragraph,
-#:info_url => Faker::Internet.url,
-#:registration_url => Faker::Internet.url
 
 Event.create!(:activity_id => Activity.first.id,
               :venue_id => Venue.first.id,

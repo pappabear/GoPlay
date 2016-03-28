@@ -14,47 +14,30 @@ task :re_seed_events => :environment do
                 :event_type_id => EventType.where('name=?', 'Player Sub').first.id,
                 :venue_id => Venue.first.id,
                 :title => 'B/C league game with The Whiners',
-                :subtitle => 'Text me @ 321-215-5568',
+                :subtitle => "I need a D for tonight's game",
                 :start_date => Date.tomorrow.strftime("%m/%d/%Y"),
                 :start_time => '10:15 pm',
                 :created_by => User.last.name,
                 :price => '$10')
-                #:subtitle => Faker::Lorem.sentence,
-                #:description => Faker::Lorem.paragraph,
-                #:details => Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph,
-                #:restrictions => Faker::Lorem.paragraph,
-                #:info_url => Faker::Internet.url,
-                #:registration_url => Faker::Internet.url
 
   Event.create!(:activity_id => Activity.first.id,
                 :event_type_id => EventType.where('name=?', 'Goalie Sub').first.id,
                 :venue_id => Venue.where('name=?', 'Mennen Arena').first.id,
-                :title => 'A league - goalie needed tonight!',
+                :title => 'A-league - goalie needed tonight!',
                 :subtitle => 'Text me @ 321-215-5568',
                 :start_date => Date.today.strftime("%m/%d/%Y"),
                 :start_time => '11:00 pm',
                 :created_by => User.last.name,
                 :price => '$10')
-                #:subtitle => Faker::Lorem.sentence,
-                #:description => Faker::Lorem.paragraph,
-                #:details => Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph,
-                #:restrictions => Faker::Lorem.paragraph,
-                #:info_url => Faker::Internet.url,
-                #:registration_url => Faker::Internet.url
 
   Event.create!(:activity_id => Activity.first.id,
                 :venue_id => Venue.first.id,
                 :title => 'Vonhoosits',
+                :subtitle => 'Text me @ 321-215-5568',
                 :start_date => Date.tomorrow.strftime("%m/%d/%Y"),
                 :start_time => '8:00 pm',
                 :created_by => User.last.name,
                 :price => '$10')
-                #:subtitle => Faker::Lorem.sentence,
-                #:description => Faker::Lorem.paragraph,
-                #:details => Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph,
-                #:restrictions => Faker::Lorem.paragraph,
-                #:info_url => Faker::Internet.url,
-                #:registration_url => Faker::Internet.url
 
   Event.create!(:activity_id => Activity.first.id,
                 :venue_id => Venue.first.id,
