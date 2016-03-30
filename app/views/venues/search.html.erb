@@ -1,0 +1,38 @@
+<% provide(:title, 'Search Results') %>
+
+
+
+<div class="container">
+  <h3 class="title"><%= @venues.count.to_s %> matching venues found</h3>
+
+  <%= will_paginate %>
+
+  <div class="table-responsive">
+    <table class="table">
+      <tbody>
+
+      <% @venues.each do |venue| %>
+          <tr>
+            <td>  <%= link_to venue.name, venue %>
+              <br/> <%= venue.formatted_address %>
+              <br/> <%= venue.phone %>
+            </td>
+            <% if current_user && current_user.admin? %>
+                <td class="td-actions text-right">
+                  <%= link_to "edit", edit_venue_path(venue), class: 'pull-right btn btn-default' %>
+                  <%= link_to "delete", venue, method: :delete, data: {confirm: "You sure?"}, class: 'pull-right btn btn-danger' %>
+                </td>
+            <% end %>
+          </tr>
+          <tr>
+      <% end %>
+
+      </tbody>
+    </table>
+  </div>
+
+  <%= will_paginate %>
+
+  <%= link_to 'Setup a new venue', new_venue_path, class: "btn btn-lg btn-default" %>
+
+</div>

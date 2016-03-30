@@ -1,0 +1,38 @@
+<% activities = Activity.all %>
+<% # set the default search focus
+   if current_user
+     z = current_user.zip unless current_user.zip == ""
+     a = current_user.activities.first.id unless current_user.activities.count == 0
+   else
+     z = "New York City, NY"
+     a = 0
+   end
+%>
+
+<form id="venue_search" method="get" accept-charset="UTF-8" action="/venues_search">
+  <select id="activity_id" name="activity_id" class="form-control input-lg" required>
+    <% activities.each do |activity| %>
+        <option value="<%= activity.id%>" <%= "selected".html_safe if activity.id == a %>><%= activity.name %></option>
+    <% end %>
+  </select>
+
+  <label for="venue_name" style="color: #fff;">Within</label>
+  <br>
+  <select id="radius" name="radius" class="form-control input-lg" required>
+    <option value="10" selected>10 miles</option>
+    <option value="50">50 miles</option>
+    <option value="100">100 miles</option>
+  </select>
+
+  <label for="venue_name" style="color: #fff;">Of</label>
+  <br>
+  <input type="text" class="input-lg form-control" name="user_geo" required value="<%= z %>">
+
+  <br>
+
+  <input type="submit" name="search" value="Search" class="btn btn-success btn-lg btn-fill" />
+
+</form>
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>

@@ -9,8 +9,9 @@ Rails.application.routes.draw do
     resources :event_types
   end
   resources :venues
+  get     'venues_search'   => 'venues#search'
   resources :events
-  get     'search'   => 'events#search'
+  get     'events_search'   => 'events#search'
 
   get     'password_resets/new'
   get     'password_resets/edit'

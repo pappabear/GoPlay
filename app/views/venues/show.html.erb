@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-sm-4">
-    <h4><%= @venue.name %></h4>
+    <h4><a href="<%= @venue.url %>" target="_new"><%= @venue.name %></a></h4>
 
     <p>
       <%= @venue.formatted_address %>
@@ -9,6 +9,16 @@
     <p>
       <%= @venue.phone %>
     </p>
+
+    <% if current_user && current_user.admin? %>
+        <p>
+          <%= link_to 'Edit this venue record', edit_venue_path(@venue), class: 'btn btn-block btn-primary' %>
+        </p>
+
+        <p>
+          <%= link_to 'Back to the list of venues', venues_path, class: 'btn btn-block btn-default' %>
+        </p>
+    <% end %>
 
   </div>
 
@@ -64,10 +74,31 @@
 </div>
 
 
-<p>
-  <%= link_to 'Edit this venue record', edit_venue_path(@venue) %>
-</p>
+<div class="row">
+  <h4>Upcoming Events</h4>
 
-<p>
-  <%= link_to 'Back to the list of venues', venues_path %>
-</p>
+  <div class="table-responsive">
+    <table class="table">
+      <tbody>
+
+      <% @events.each do |event| %>
+          <tr>
+            <td><strong><%= event.title %> on <%= event.start_date.strftime("%m/%d/%Y") %></strong>
+              <br /><%= event.activity.name %>
+              <%= " / " + event.event_type.name unless event.event_type.nil? %>
+              <br /><%= event.subtitle %>
+              <br />
+              Cost: <%= event.price %>.
+              Restrictions: <%= event.restrictions %>.
+              <br />
+              <i class="small">Added <%= time_ago_in_words event.created_at %> ago on <%= event.created_at.strftime("%m/%d/%Y") %> at <%= event.created_at.strftime("%l:%M%P") %> ET by <%= event.created_by %></i>
+            </td>
+          </tr>
+          <tr>
+      <% end %>
+
+      </tbody>
+    </table>
+  </div>
+
+</div>

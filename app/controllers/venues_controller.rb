@@ -1,8 +1,16 @@
 class VenuesController < ApplicationController
 
 
-  before_action :admin_user
+  before_action :admin_user, only: [:index, :new, :edit, :update, :destroy]
   before_action :set_venue, only: [:show, :edit, :update, :destroy]
+
+
+  def search
+    address = GeocodedAddress.new(params['user_geo'])
+    # find venues within the search radius, and filter on the chosen criteria
+    @venues = Venue.within(params[:radius].to_i, :origin => [ address.latitude , address.longitude ])
+                  .paginate(page: params[:page])
+  end
 
 
   def index
@@ -11,6 +19,10 @@ class VenuesController < ApplicationController
 
 
   def show
+    @events = Event.where('venue_id=?', @venue.id.to_s)
+                   .where('start_date >= ?', DateTime.now)
+                   .order('start_date')
+
   end
 
 

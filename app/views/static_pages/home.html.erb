@@ -23,12 +23,20 @@
     <% end %>
 
 
-    <h2 style="color: #ffffff;">Find your next opening or sub spot</h2>
+    <h2 style="color: #ffffff;">Find openings to play</h2>
     <small style="color: #ffffff;">Instantly search across all the sites in your area</small>
 
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
-        <%= render partial: "shared/search" %>
+        <%= render partial: "shared/events_search" %>
+      </div>
+    </div>
+
+    <h2 style="color: #ffffff;">Find places to play</h2>
+
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <%= render partial: "shared/venues_search" %>
       </div>
     </div>
 
