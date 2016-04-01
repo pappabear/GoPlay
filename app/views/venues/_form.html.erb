@@ -34,7 +34,24 @@
     <%= f.hidden_field :latitude %>
     <%= f.hidden_field :longitude %>
 
-    <%= f.submit "Save", class: "btn btn-success" %>
+    <label>Activities</label>
+    <div class="form-group">
+      <ul>
+        <% Activity.all.each do |activity| %>
+            <li style="list-style-type:none;">
+              <label class="checkbox checkbox-azure" for="checkbox<%= activity.id %>">
+
+                <input type="checkbox" name="venue[activity_ids][]" id="checkbox<%= activity.id %>" value="<%= activity.id %>" id="checkbox<%= activity.id %>" data-toggle="checkbox" <%= "checked".html_safe if @venue.activities.include?(activity) %>>
+
+                <%= activity.name %>
+
+              </label>
+            </li>
+        <% end %>
+      </ul>
+    </div>
+
+    <%= f.submit "Save", class: "btn btn-success btn-block bnt-fill" %>
 
     <p>&nbsp;</p>
 

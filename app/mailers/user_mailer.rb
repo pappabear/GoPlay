@@ -54,23 +54,6 @@ class UserMailer < ApplicationMailer
 
 
   def weekly_notifications
-    puts 'Initiating the daily_notifications job...'
-    subscribers = User.where('basic_notifications_frequency=?', 'weekly').where('latitude is not null and longitude is not null')
-    puts subscribers.count.to_s + ' subscriber(s) found.'
-
-    subscribers.each do |sub|
-      activities = sub.activities
-      @events = Event.within(50, :origin => [ sub.latitude , sub.longitude ])
-                    .where(activity_id: activities)
-                    .where('start_date > ?', DateTime.now)
-                    .where('start_date < ?', Date.today.advance(:days=>14))
-                    .order('start_date')
-      puts '    For ' + sub.email + ' there were ' + @events.count.to_s + ' event(s) found.'
-      mail to: sub.email, subject: "Your " + APP_NAME + " weekly update"
-
-    end
-
-    puts '...completed sending daily_notifications.'
   end
 
 

@@ -9,6 +9,7 @@ class VenuesController < ApplicationController
     address = GeocodedAddress.new(params['user_geo'])
     # find venues within the search radius, and filter on the chosen criteria
     @venues = Venue.within(params[:radius].to_i, :origin => [ address.latitude , address.longitude ])
+                  .where('id in (select venue_id from activities_venues where activity_id = ' + params['activity_id'] + ')')
                   .paginate(page: params[:page])
   end
 
@@ -111,7 +112,7 @@ class VenuesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def venue_params
-    params.require(:venue).permit(:name, :address1, :address2, :city, :state, :zip, :phone, :longitude, :latitude)
+    params.require(:venue).permit(:name, :address1, :address2, :city, :state, :zip, :phone, :longitude, :latitude, {:activity_ids => []})
   end
 
 

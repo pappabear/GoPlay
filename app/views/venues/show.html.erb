@@ -20,6 +20,9 @@
         </p>
     <% end %>
 
+    <% @venue.activities.each do |activity| %>
+        <span class="label label-default"><%= activity.name %></span>
+    <% end %>
   </div>
 
 
@@ -76,6 +79,10 @@
 
 <div class="row">
   <h4>Upcoming Events</h4>
+
+  <% if @events.count == 0 %>
+    <h6>sorry, we don't know of any</h6>
+  <% end %>
 
   <div class="table-responsive">
     <table class="table">
