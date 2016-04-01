@@ -33,6 +33,9 @@
 
   <%= will_paginate %>
 
-  <%= link_to 'Setup a new venue', new_venue_path, class: "btn btn-lg btn-default" %>
+  <% if current_user && current_user.admin? %>
+      <%= link_to 'Setup a new venue', new_venue_path, class: "btn btn-lg btn-default" %>
+  <% end %>
+
 
 </div>
