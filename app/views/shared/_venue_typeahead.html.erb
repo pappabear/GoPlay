@@ -1,0 +1,68 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3 col-xs-12 text-center">
+    <form class="navbar-form" role="search" id="venue_search" method="get" accept-charset="UTF-8" action="/venues_search">
+      <div class="form-group">
+        <input type="text" class="form-control border-input input-lg" id="venue_name" name="venue_name" placeholder="Search by name...">
+      </div>
+      <button type="submit" class="btn btn-danger btn-icon btn-fill"><i class="fa fa-search"></i></button>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+    </form>
+  </div>
+</div>
+
+<script language="JavaScript">
+
+    $().ready(function () {
+
+        var substringMatcher = function(strs) {
+            return function findMatches(q, cb) {
+                var matches, substringRegex;
+
+                // an array that will be populated with substring matches
+                matches = [];
+
+                // regex used to determine if a string contains the substring `q`
+                substrRegex = new RegExp(q, 'i');
+
+                // iterate through the pool of strings and for any string that
+                // contains the substring `q`, add it to the `matches` array
+                $.each(strs, function(i, str) {
+                    if (substrRegex.test(str)) {
+                        matches.push(str);
+                    }
+                });
+
+                cb(matches);
+            };
+        };
+
+        var venues = [
+            <% Venue.all.each do |venue| %>
+            <%= "'".html_safe + venue.name + " (" + venue.city + ", " + venue.state + ")'".html_safe %>,
+            <% end %>
+        ];
+
+        $('#venue_name').typeahead(
+                {
+                    hint: true,
+                    highlight: true,
+                    minLength: 3
+                },
+                {   name: 'venues',
+                    source: substringMatcher(venues),
+                    templates: {
+                        suggestion: function(venue) {
+                            values = venue.split('(');
+                            return '<p>' + values[0] + ' <span class="text-muted">(' + values[1] + '</span></p>';
+                        }
+                    }
+                }
+        );
+
+    });
+</script>

@@ -6,11 +6,20 @@ class VenuesController < ApplicationController
 
 
   def search
-    address = GeocodedAddress.new(params['user_geo'])
-    # find venues within the search radius, and filter on the chosen criteria
-    @venues = Venue.within(params[:radius].to_i, :origin => [ address.latitude , address.longitude ])
-                  .where('id in (select venue_id from activities_venues where activity_id = ' + params['activity_id'] + ')')
-                  .paginate(page: params[:page])
+
+    if !params['venue_name'].nil? && params['venue_name'].length > 0
+      # search is coming from the 'name' search
+      puts '>' + params['venue_name'].upcase.split(' (')[0] + '<'
+      @venues = Venue.where("upper(name) like '%" + params['venue_name'].upcase.split(' (')[0] + "%'")
+                    .paginate(page: params[:page])
+    else
+      # search is coming from the terms search
+      address = GeocodedAddress.new(params['user_geo'])
+      # find venues within the search radius, and filter on the chosen criteria
+      @venues = Venue.within(params[:radius].to_i, :origin => [ address.latitude , address.longitude ])
+                    .where('id in (select venue_id from activities_venues where activity_id = ' + params['activity_id'] + ')')
+                    .paginate(page: params[:page])
+    end
   end
 
 

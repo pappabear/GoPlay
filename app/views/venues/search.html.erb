@@ -1,9 +1,17 @@
 <% provide(:title, 'Search Results') %>
 
-
-
 <div class="container">
   <h3 class="title"><%= @venues.count.to_s %> matching venues found</h3>
+
+  <% if !params['venue_name'].nil? && params['venue_name'].length > 0 %>
+      <span class="label label-info">name is like <%= params['venue_name'].upcase.split(' (')[0] %></span>
+  <% else %>
+      <span class="label label-info"><%= Activity.find(params['activity_id']).name %></span>
+      <span class="label label-info">within <%= params[:radius] %> miles </span>
+      <span class="label label-info">of <%= params[:user_geo] %></span>
+  <% end %>
+
+  <p>&nbsp;</p>
 
   <%= will_paginate %>
 
