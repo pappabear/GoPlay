@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  resources :articles
+  get     'news'    => 'articles#news'
+
   resources :feedback_emails
   get 'contact' => 'feedback_emails#new'
   post 'feedback_emails/create'
@@ -8,6 +11,7 @@ Rails.application.routes.draw do
     get 'get_event_types' => 'events#get_event_types'
     resources :event_types
   end
+
   resources :venues
   get     'venues_search'   => 'venues#search'
   resources :events
@@ -21,10 +25,8 @@ Rails.application.routes.draw do
   root                'static_pages#home'
   get     'help'    => 'static_pages#help'
   get     'about'   => 'static_pages#about'
-  #get     'contact' => 'static_pages#contact'
   get     'terms' => 'static_pages#terms'
   get     'privacy' => 'static_pages#privacy'
-  get     'news'    => 'static_pages#news'
   get     'signup'  => 'users#new'
   get     'login'   => 'sessions#new'
   post    'login'   => 'sessions#create'

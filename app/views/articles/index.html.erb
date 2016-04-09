@@ -1,0 +1,48 @@
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="media-area">
+      <h3>News</h3>
+
+      <% @articles.each do |article| %>
+
+          <div class="media">
+            <a class="pull-left" href="#">
+              <div class="avatar">
+                <%= gravatar_for User.find(article.owner_id), size: 50 %>
+              </div>
+            </a>
+
+            <div class="media-body">
+              <h5 class="media-heading"><%= article.title %></h5>
+
+              <div class="pull-right">
+                <h6 class="text-muted"><%= article.created_at.strftime("%a, %b %d, %Y") %></h6>
+
+              </div>
+              <p><%= article.body %></p>
+
+              <% if current_user && current_user.admin? %>
+                  <p>
+                    <%= link_to 'Edit this article', edit_article_path(article), class: 'btn btn-primary' %>
+                    <%= link_to "Delete this article", article, method: :delete, data: {confirm: "You sure?"}, class: 'btn btn-danger' %>
+                  </p>
+              <% end %>
+
+
+            </div>
+          </div>
+
+          <!-- end media -->
+
+      <% end %>
+
+    </div>
+
+    <% if current_user && current_user.admin? %>
+        <p>
+          <%= link_to 'Write a new article', new_article_path, class: 'btn btn-success' %>
+        </p>
+    <% end %>
+
+  </div>
+</div>

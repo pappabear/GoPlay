@@ -7,6 +7,7 @@ Activity.destroy_all
 Venue.destroy_all
 User.destroy_all
 Event.destroy_all
+Article.destroy_all
 
 puts 'Creating users...'
 
@@ -67,6 +68,7 @@ end
 puts '...venues created.  Make sure the geocoding worked!!. Verify that latitudes and longitudes are filled in.'
 
 puts 'Creating events...'
+
 Event.create!(:activity_id => Activity.first.id,
               :event_type_id => EventType.where('name=?', 'Player Sub').first.id,
               :venue_id => Venue.first.id,
@@ -112,5 +114,18 @@ Event.create!(:activity_id => Activity.first.id,
               :created_by => User.last.name,
               :price => '$10')
 
+
+puts 'Creating articles...'
+
+Article.create!(:title=>'This is a new story',
+                :body=>'This is the body of the news story',
+                :published_at=>'',
+                :expired_at=>'',
+                :owner_id=>User.last.id)
+Article.create!(:title=>'This is a second new story',
+                :body=>'This is the body of the second news story',
+                :published_at=>'',
+                :expired_at=>'',
+                :owner_id=>User.last.id)
 
 puts 'Done.'

@@ -1,0 +1,16 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: "This is an article"
+  body: "Hello world I am a wonderful news story"
+  published_at:
+  expired_at:
+  owner_id: <%= User.first.id %>
+
+two:
+  title: "This is another article"
+  body: "Hello world I am second wonderful news story"
+  published_at: <%= Date.today %>
+  expired_at: <%= Date.tomorrow %>
+  owner_id: <%= User.first.id %>
+

@@ -16,13 +16,6 @@ class StaticPagesControllerTest < ActionController::TestCase
   end
 
 
-  test "should get news" do
-    get :news
-    assert_response :success
-    assert_select "title", "News | " + APP_NAME
-  end
-
-
   test "should get about" do
     get :about
     assert_response :success
