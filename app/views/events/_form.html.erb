@@ -1,15 +1,23 @@
 <%= form_for @event, :html => {:class => ''} do |f| %>
 
-    <div class="form-group <%= "has-error".html_safe unless @event.errors[:activity_id].blank? %>">
-      <%= f.label 'Activity *', :class => 'control-label ' %>
-      <%= f.collection_select(:activity_id, Activity.all, :id, :name, {:include_blank => "- Choose one -"}, {:class => 'form-control border-input'}) %>
-    </div>
+    <div class="row">
+      <div class="col-md-6">
 
-    <div class="form-group <%= "has-error".html_safe unless @event.errors[:event_type_id].blank? %>">
-      <label class="control-label " for="event_event_type">Event Type</label>
-      <select id="event_event_type_id" name="event[event_type_id]" class="form-control border-input">
-        <option value=""></option>
-      </select>
+        <div class="form-group <%= "has-error".html_safe unless @event.errors[:activity_id].blank? %>">
+          <%= f.label 'Activity *', :class => 'control-label ' %>
+          <%= f.collection_select(:activity_id, Activity.all, :id, :name, {:include_blank => "- Choose one -"}, {:class => 'form-control border-input'}) %>
+        </div>
+
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group <%= "has-error".html_safe unless @event.errors[:event_type_id].blank? %>">
+          <label class="control-label " for="event_event_type">Event Type</label>
+          <select id="event_event_type_id" name="event[event_type_id]" class="form-control border-input">
+            <option value=""></option>
+          </select>
+        </div>
+      </div>
     </div>
 
     <div class="form-group <%= "has-error".html_safe unless @event.errors[:venue_id].blank? %>">
@@ -27,11 +35,28 @@
       <%= f.text_field :subtitle, class: 'form-control border-input' %>
     </div>
 
+    <div class="row">
+      <div class="col-md-6">
+
+        <div class="form-group <%= "has-error".html_safe unless @event.errors[:start_date].blank? %>">
+          <%= f.label 'Start Date *' %>
+          <%= f.text_field :start_date, class: 'datepicker form-control border-input', placeholder: 'for example, ' + Date.today.strftime("%m/%d/%Y") %>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group <%= "has-error".html_safe unless @event.errors[:start_time].blank? %>">
+          <%= f.label 'Start Time *' %>
+          <%= f.text_field :start_time, class: 'form-control border-input', placeholder: 'for example, 8:00pm' %>
+        </div>
+      </div>
+    </div>
+
     <div class="form-group <%= "has-error".html_safe unless @event.errors[:is_urgent].blank? %>">
       <%= f.label "Is this urgent?" %>
       <%= f.label "It this urgent?", class: "checkbox" do %>
 
-          <% # if the current user doesn't have a phone number, don't allow his to send or receive texts %>
+          <% # if the current user doesn't have a phone number, don't allow his to send or receive texts   %>
           <% if current_user.phone.nil? || current_user.phone.length <= 0 %>
               <%= f.check_box :is_urgent, {"data-toggle" => "checkbox", "disabled" => "disabled"}, true %>
           <% else %>
@@ -51,16 +76,6 @@
     <div class="form-group <%= "has-error".html_safe unless @event.errors[:restrictions].blank? %>">
       <%= f.label :restrictions %>
       <%= f.text_field :restrictions, class: 'form-control border-input', placeholder: 'for example, "age > 18", or "girls only"' %>
-    </div>
-
-    <div class="form-group <%= "has-error".html_safe unless @event.errors[:start_date].blank? %>">
-      <%= f.label 'Start Date *' %>
-      <%= f.text_field :start_date, class: 'datepicker form-control border-input', placeholder: 'for example, ' + Date.today.strftime("%m/%d/%Y") %>
-    </div>
-
-    <div class="form-group <%= "has-error".html_safe unless @event.errors[:start_time].blank? %>">
-      <%= f.label 'Start Time *' %>
-      <%= f.text_field :start_time, class: 'form-control border-input', placeholder: 'for example, 8:00pm' %>
     </div>
 
     <%= f.submit "Save", class: "btn btn-success btn-fill btn-block" %>
