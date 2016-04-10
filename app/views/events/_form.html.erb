@@ -60,7 +60,7 @@
 
     <div class="form-group <%= "has-error".html_safe unless @event.errors[:start_time].blank? %>">
       <%= f.label 'Start Time *' %>
-      <%= f.text_field :start_time, class: 'form-control border-input', placeholder: 'for example, 8pm' %>
+      <%= f.text_field :start_time, class: 'form-control border-input', placeholder: 'for example, 8:00pm' %>
     </div>
 
     <%= f.submit "Save", class: "btn btn-success btn-fill btn-block" %>
