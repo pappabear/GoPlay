@@ -3,7 +3,7 @@
 
 
 <div class="container">
-  <h3 class="title"><%= @events.count.to_s %> matching events found</h3>
+  <h3 class="title"><%= @events.count.to_s %> events found matching your search</h3>
 
   <span class="label label-info"><%= Activity.find(params['activity_id']).name %></span>
   <span class="label label-info">within <%= params[:radius] %> miles </span>

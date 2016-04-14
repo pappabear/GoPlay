@@ -1,25 +1,46 @@
-<% events.each do |event| %>
+<div class="container">
 
-<div class="col-md-4 col-sm-6">
-    <div class="card-big-shadow">
-        <div class="card" data-radius="none">
-            <div class="content">
-                <h6 class="category"><%= event.activity.name %><%= " / " + event.event_type.name unless event.event_type.nil? %></h6>
-                <h4 class="title"><%= event.title %></h4>
-                <p class="description">
-                    <%= event.subtitle if !event.subtitle.nil? %>
-                    <br /><%= event.start_date.strftime("%m/%d/%Y") %> @ <%= event.start_time %>
+    <%= will_paginate %>
+
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th class="text-right"></th>
+            </tr>
+            </thead>
+
+            <tbody>
+
+            <% @events.each do |event| %>
+            <tr>
+                <td>
+                    <span class="label label-success"><%= event.activity.name %></span>
+                    <span class="label label-success"><%= event.event_type.name unless event.event_type.nil? %></span>
                     <br />
-                    <%= event.venue.name %>
+                    <strong><%= event.title %> @ <%= event.venue.name %> on <%= event.start_date.strftime("%m/%d/%Y") %></strong>
+                    <%= "<br />".html_safe + event.subtitle unless event.subtitle.nil? %>
                     <br />
-                    <%= " Cost:".html_safe + event.price if !event.price.nil? %>
-                    <%= " Restrictions:".html_safe + event.restrictions if !event.restrictions.nil? %>
-                    <i>This is a fake event!</i>
-                </p>
-                <i class="small" style="color:silver;">Added <%= time_ago_in_words event.created_at %> ago on <%= event.created_at.strftime("%m/%d/%Y") %> at <%= event.created_at.strftime("%l:%M%P") %> ET by <%= event.created_by %></i>
-            </div>
-        </div> <!-- end card -->
+                    Cost: <%= event.price %>. &nbsp;&nbsp;&nbsp;&nbsp;
+                    Restrictions: <%= event.restrictions %>.
+                    <br />
+                    <i class="small">Added <%= time_ago_in_words event.created_at %> ago on <%= event.created_at.strftime("%m/%d/%Y") %> at <%= event.created_at.strftime("%l:%M%P") %> ET by <%= event.created_by %></i>
+                </td>
+                <td class="td-actions text-right">
+                    <% if current_user.admin? %>
+                    <%= link_to "edit", edit_event_path(event), class: 'pull-right btn btn-default' %>
+                    <%= link_to "delete", event, method: :delete, data: {confirm: "You sure?"}, class: 'pull-right btn btn-danger' %>
+                    <% end %>
+                </td>
+            </tr>
+            <tr>
+                <% end %>
+
+            </tbody>
+        </table>
     </div>
-</div>
 
-<% end %>
+    <%= will_paginate %>
+
+</div>
