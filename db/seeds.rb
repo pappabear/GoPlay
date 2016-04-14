@@ -76,7 +76,7 @@ Event.create!(:activity_id => Activity.first.id,
               :subtitle => "I need a D for tonight's game",
               :start_date => Date.tomorrow.strftime("%m/%d/%Y"),
               :start_time => '10:15 pm',
-              :created_by => User.last.name,
+              :owner_id => User.last.id,
               :price => '$10')
 
 Event.create!(:activity_id => Activity.first.id,
@@ -86,7 +86,7 @@ Event.create!(:activity_id => Activity.first.id,
               :subtitle => 'Text me @ 321-215-5568',
               :start_date => Date.today.strftime("%m/%d/%Y"),
               :start_time => '11:00 pm',
-              :created_by => User.last.name,
+              :owner_id => User.last.id,
               :price => '$10')
 
 Event.create!(:activity_id => Activity.first.id,
@@ -95,7 +95,7 @@ Event.create!(:activity_id => Activity.first.id,
               :subtitle => 'Text me @ 321-215-5568',
               :start_date => Date.tomorrow.strftime("%m/%d/%Y"),
               :start_time => '8:00 pm',
-              :created_by => User.last.name,
+              :owner_id => User.last.id,
               :price => '$10')
 
 Event.create!(:activity_id => Activity.first.id,
@@ -103,7 +103,7 @@ Event.create!(:activity_id => Activity.first.id,
               :title => 'Stick and Puck',
               :start_date => Date.tomorrow.strftime("%m/%d/%Y"),
               :start_time => '11:00 am',
-              :created_by => User.last.name,
+              :owner_id => User.last.id,
               :price => '$10')
 
 Event.create!(:activity_id => Activity.first.id,
@@ -111,7 +111,7 @@ Event.create!(:activity_id => Activity.first.id,
               :title => 'Stick and Puck',
               :start_date => Date.tomorrow.strftime("%m/%d/%Y"),
               :start_time => '4:30 pm',
-              :created_by => User.last.name,
+              :owner_id => User.last.id,
               :price => '$10')
 
 
