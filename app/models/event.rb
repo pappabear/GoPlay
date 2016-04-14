@@ -9,6 +9,7 @@ class Event < ActiveRecord::Base
   before_validation :convert_start_date, :on => [:create, :update]
   before_validation :convert_start_time, :on => [:create, :update]
   before_validation :ensure_geo_coords, :on => [:create, :update]
+  after_validation :ensure_event_is_unique, :on => [:create, :update]
 
   belongs_to :venue
   belongs_to :activity
@@ -28,6 +29,16 @@ class Event < ActiveRecord::Base
     v = Venue.find(self.venue.id)
     self.latitude = v.latitude
     self.longitude = v.longitude
+  end
+
+
+  def ensure_event_is_unique
+    dupes = Event.where('venue_id=?', self.venue_id)
+                 .where('start_date=?', self.start_date)
+                 .where('start_time=?', self.start_time)
+    if dupes.count > 0
+      errors.add(:start_time, " -- Oops. There is already an event scheduled here at this time.")
+    end
   end
 
 
